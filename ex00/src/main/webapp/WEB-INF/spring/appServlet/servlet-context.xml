@@ -25,12 +25,20 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	
+	<!-- 	multipart타입의 데이터 처리를 가능하게 한다. 10MB -->
+	<beans:bean id="multipartResolver"
+	class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<beans:property name="maxUploadSize" value="10485760"></beans:property>
+	</beans:bean>
+	
 	<!-- 객체를 자동 생성하게 하는 태그 : base-package 밑으로 다 찾는다.
 	  자동 생성되는 객체 : @Controller, @Service, @Repository, @Component,
 	  @RestController(데이터만 전송:Ajax) -->
 	<context:component-scan base-package="org.zerock.web" />
 	<context:component-scan base-package="org.zerock.board" />
 	<context:component-scan base-package="org.zerock.member" />
+<!-- 	<context:component-scan base-package="org.zerock.furniture" /> -->
 	<context:component-scan base-package="com.web.Budongsan" />
 	
 	
