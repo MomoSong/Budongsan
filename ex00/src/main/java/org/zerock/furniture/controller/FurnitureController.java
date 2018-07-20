@@ -36,10 +36,10 @@ import org.zerock.furniture.util.UploadFileUtil;
 public class FurnitureController
 {
 
-	private static final Logger logger = LoggerFactory.getLogger(FurnitureController.class);
+	//private static final Logger logger = LoggerFactory.getLogger(FurnitureController.class);
 
-	@Resource(name = "uploadPath")
-	private String uploadPath;
+//	@Resource(name = "uploadPath")
+//	private String uploadPath;
 
 //	// 처음 업로드 폼으로 들어 올때
 //	@RequestMapping(value = "/board/uploadForm.do", method = RequestMethod.GET)
@@ -63,22 +63,22 @@ public class FurnitureController
 //	}
 
 	// 이미지 파일을 생성하는 메소드
-	private String uploadFile(String originalName, byte[] fileData) throws Exception
-	{
-
-		UUID uid = UUID.randomUUID();
-		String savedName = uid.toString() + "_" + originalName;
-		File target = new File(uploadPath, savedName);
-		FileCopyUtils.copy(fileData, target);
-		return savedName;
-	}
+//	private String uploadFile(String originalName, byte[] fileData) throws Exception
+//	{
+//
+//		UUID uid = UUID.randomUUID();
+//		String savedName = uid.toString() + "_" + originalName;
+//		File target = new File(uploadPath, savedName);
+//		FileCopyUtils.copy(fileData, target);
+//		return savedName;
+//	}
 
 	// 사용할 서비스 변수 선언. - DI 적용 : @Inject, @Autowired
 	@Inject
 	private FurnitureService service;
 
 	// 리스트 - DB에서 데이터를 꺼내와서 JSP로 Model객체에 데이터를 담아서 넘긴다.forward
-	@RequestMapping(value = "/board/list.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/furniture/list.do", method = RequestMethod.GET)
 	public String list(Model model, Criteria cri, HttpSession session)
 	{
 		System.out.println(getClass().getSimpleName() + ".list()");
@@ -95,33 +95,33 @@ public class FurnitureController
 		
 		// prefix + return String + suffix
 		// /WEB-INF/views/board/list.jsp
-		return "board/list";
+		return "furniture/list";
 	}
 
 	// 글보기 - 글번호를 전달 받아서 DB에 글번호에 맞는 BoardDTO를 가져온다. JSP로 전달
 	// view.do?no=10
-	@RequestMapping(value = "/board/view.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/furniture/view.do", method = RequestMethod.GET)
 	public String view(Model model, int id)
 	{
 		System.out.println(getClass().getSimpleName() + ".view()");
 		model.addAttribute("dto", service.view(id, true));
 		// prefix + return String + suffix
 		// /WEB-INF/views/board/view.jsp
-		return "board/view";
+		return "furniture/view";
 	}
 
 	// 글쓰기 폼 -> servlet-context.xml에 view-controller tag로 지정
-	@RequestMapping(value = "/board/write.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/furniture/write.do", method = RequestMethod.GET)
 	public String write()
 	{
 		System.out.println(getClass().getSimpleName() + ".write():GET");
-		return "board/write";
+		return "furniture/write";
 	}
 
 	// 글쓰기 처리 - 사용자가 제목, 내용, 작성자 데이터 입력 후 넘긴다. -> BoardDTO
 	// 리스트로 갈때에 글등록이 완료 되었다는 경고창은 띄우자(단, 한번만)
 	// -> RedirectAttributes.flash속성을 이용한다.
-	@RequestMapping(value = "/board/write.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/furniture/write.do", method = RequestMethod.POST)
 	public String write(FurnitureDTO boardDTO, RedirectAttributes rttr,
 			MultipartHttpServletRequest multipartHttpServletRequest, HttpSession session, MultipartFile file ) throws IOException, Exception
 	{
@@ -160,7 +160,7 @@ public class FurnitureController
 	}
 
 	// 글수정 폼 - DB에서 글번호에 맞는 데이터를 불러와서 사용자에게 보여준다. -> JSP
-	@RequestMapping(value = "/board/update.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/furniture/update.do", method = RequestMethod.GET)
 	public String update(Model model, int id)
 	{
 		System.out.println(getClass().getSimpleName() + ".update():GET");
@@ -171,7 +171,7 @@ public class FurnitureController
 	}
 
 	// 글수정 처리 - 수정한 제목, 내용, 작성자를 글번호와 함께 DAO에 보내서 DB에 저장한다.
-	@RequestMapping(value = "/board/update.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/furniture/update.do", method = RequestMethod.POST)
 	public String update(FurnitureDTO boardDTO, RedirectAttributes rttr)
 	{
 		System.out.println(getClass().getSimpleName() + ".write():POST");
@@ -184,7 +184,7 @@ public class FurnitureController
 	}
 
 	// 글삭제 처리 - 삭제할 글번호를 받아서 DB에서 글번호에 맞는 데이터를 삭제한다.
-	@RequestMapping(value = "/board/delete.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/furniture/delete.do", method = RequestMethod.GET)
 	public String delete(int id, RedirectAttributes rttr,HttpSession session)
 	{
 		System.out.println(getClass().getSimpleName() + ".delete()");
