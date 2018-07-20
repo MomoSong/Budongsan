@@ -36,7 +36,6 @@
 	  자동 생성되는 객체 : @Controller, @Service, @Repository, @Component,
 	  @RestController(데이터만 전송:Ajax) -->
 	<context:component-scan base-package="org.zerock.web" />
-	<context:component-scan base-package="org.zerock.board" />
 	<context:component-scan base-package="org.zerock.member" />
 	<context:component-scan base-package="org.zerock.furniture" />
 	<context:component-scan base-package="com.web.Budongsan" />

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.zerock.member.dto.Criteria;
+import org.zerock.member.dto.MemberCriteria;
 import org.zerock.member.dto.LoginDTO;
 import org.zerock.member.service.MemberService;
 
@@ -62,7 +62,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="list.do", method = RequestMethod.GET)
-	public String list(Model model, Criteria cri, LoginDTO dto) {
+	public String list(Model model, MemberCriteria cri, LoginDTO dto) {
 		if(dto.getGrade() == 9) {
 //			model.addAttribute("list", service.list(cri));
 					

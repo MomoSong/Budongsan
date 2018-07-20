@@ -10,7 +10,7 @@ package org.zerock.member.dto;
  *  이전 페이지 유무, 다음 페이지의 유무
  */
 
-public class Criteria {
+public class MemberCriteria {
 
 	// DB에서 페이지 처리된 데이터를 가져 오는데 필요한 정보.
 	private int page, perPageNum, startRow, endRow;
@@ -26,7 +26,7 @@ public class Criteria {
 
 	// 맨처음 시작할때 list.do로 시작하므로 페이지는 1, 한 페이지에 표시할 데이터의 갯수 10으로 정한다.
 	// 기본 생성자(파라메터가 없는 생성자)를 이용해서 정해 줘야 한다.
-	public Criteria() {
+	public MemberCriteria() {
 		// 초기값을 넣는다.
 		// 나중에 전달되는 값으로 바뀐다. 전달되는 값이 없으면 유지 된다.
 		page = 1;
