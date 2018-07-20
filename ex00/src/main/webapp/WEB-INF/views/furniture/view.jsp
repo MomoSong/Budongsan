@@ -61,7 +61,7 @@
 			msg == "updateOK" ? "alert('수정이 완료되었습니다.')" : ""
 		}
 
-		$('.carousel').carousel()
+	
 
 	});
 </script>
@@ -107,8 +107,6 @@
 	<div class="container">
 		<h1> </h1>
 		
-	
-	
 		<div class="col-xs-12 col-sm-6 col-md-8">
 			<div class="card mt-4">
 
@@ -119,22 +117,18 @@
 						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 						<li data-target="#myCarousel" data-slide-to="1"></li>
 						<li data-target="#myCarousel" data-slide-to="2"></li>
-						<li data-target="#myCarousel" data-slide-to="3"></li>
 					</ol>
 
 					<!-- Wrapper for slides -->
-					<div class="carousel-inner" role="listbox">
+					<div class="carousel-inner" role="listbox" >
 						<div class="item active">
-							<img src="/resources/saveImage/식탁입니다4.jpg" alt="Chania">
+							<img src="/resources/saveImage/${dto.id}_0.jpg" >
 						</div>
 						<div class="item">
-							<img src="/resources/saveImage/식탁입니다4.jpg" alt="Chania">	
+							<img src="/resources/saveImage/${dto.id}_1.jpg" >	
 						</div>
 						<div class="item">
-							<img src="/resources/saveImage/식탁입니다4.jpg" alt="Flower">
-						</div>
-						<div class="item">
-							<img src="/resources/saveImage/식탁입니다4.jpg" alt="Flower">
+							<img src="/resources/saveImage/${dto.id}_2.jpg" >
 						</div>
 					</div>
 

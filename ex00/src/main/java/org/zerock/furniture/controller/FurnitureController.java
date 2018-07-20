@@ -11,7 +11,9 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -36,42 +38,6 @@ import org.zerock.furniture.util.UploadFileUtil;
 public class FurnitureController
 {
 
-	//private static final Logger logger = LoggerFactory.getLogger(FurnitureController.class);
-
-//	@Resource(name = "uploadPath")
-//	private String uploadPath;
-
-//	// 처음 업로드 폼으로 들어 올때
-//	@RequestMapping(value = "/board/uploadForm.do", method = RequestMethod.GET)
-//	public void uploadForm() throws Exception
-//	{
-//		System.out.println(this.getClass().getName() + "uploadForm()GET");
-//	}
-
-//	// 처음 업로드가 실행이 될때
-//	@RequestMapping(value = "/board/uploadForm.do", method = RequestMethod.POST)
-//	public String uploadForm(MultipartFile file, Model model) throws Exception
-//	{
-//		System.out.println(this.getClass().getName() + "uploadForm()POST");
-//
-//		logger.info("originalName: " + file.getOriginalFilename());
-//		logger.info("size: " + file.getSize());
-//		logger.info("contentType: " + file.getContentType());
-//		String savedName = uploadFile(file.getOriginalFilename(), file.getBytes());
-//		model.addAttribute("savedName", savedName);
-//		return "uploadResult";
-//	}
-
-	// 이미지 파일을 생성하는 메소드
-//	private String uploadFile(String originalName, byte[] fileData) throws Exception
-//	{
-//
-//		UUID uid = UUID.randomUUID();
-//		String savedName = uid.toString() + "_" + originalName;
-//		File target = new File(uploadPath, savedName);
-//		FileCopyUtils.copy(fileData, target);
-//		return savedName;
-//	}
 
 	// 사용할 서비스 변수 선언. - DI 적용 : @Inject, @Autowired
 	@Inject
@@ -125,28 +91,44 @@ public class FurnitureController
 	public String write(FurnitureDTO boardDTO, RedirectAttributes rttr,
 			MultipartHttpServletRequest multipartHttpServletRequest, HttpSession session, MultipartFile file ) throws IOException, Exception
 	{
+		
+		
 		System.out.println(getClass().getSimpleName() + ".write():POST");
+		int index = 0;
 		String Path = session.getServletContext().getRealPath("/resources/saveImage"); 
+		
 		
 		List<MultipartFile> files = multipartHttpServletRequest.getFiles("files");
 		
 		
-		for (MultipartFile temp : files )
-		{
-			System.out.println(temp.getOriginalFilename());
-			System.out.println( UUID.randomUUID().toString().length());
-		}
 		
-			
+		
+		
+		boardDTO.setUUID( UUID.randomUUID().toString());
 		boardDTO.setPicture(file.getBytes());
 		
-	
 		 service.insert(boardDTO); 
+		
+		 
 		 int id = service.getTitleID(boardDTO);
 		 
 		  boardDTO.setId(id);
 		  
+		  // 리스트 이미지 저장
 		  UploadFileUtil.saveImg(boardDTO, Path);
+		  
+		  // 뷰 이미지 저장
+		  UploadFileUtil.saveViewImg(files, ""+id, Path);
+//		  for (MultipartFile temp : files )
+//			{
+//				if (index >= UploadFileUtil.getMAX_imgSize())
+//					break;
+//				
+//				//System.out.println(temp.getOriginalFilename());
+//				UploadFileUtil.saveImg(temp.getBytes(), ""+id+"_"+index ,Path);
+//				index++;
+//			}
+		  
 		
 		// 딱 한번만 적용되고 다음에는 없어지는 속성 저장
 		rttr.addFlashAttribute("msg", "writeOK");
@@ -190,6 +172,7 @@ public class FurnitureController
 		boardDTO.setId(id);
 		String name = service.getIdTitle(boardDTO);
 		UploadFileUtil.ImgDelect(Path,""+id+"."+"jpg");
+		UploadFileUtil.ImgViewDelect(Path,""+id);
 		
 		service.delete(id);
 		// 딱 한번만 적용되고 다음에는 없어지는 속성 저장

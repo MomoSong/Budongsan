@@ -17,6 +17,7 @@ import org.imgscalr.Scalr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.multipart.MultipartFile;
 import org.zerock.furniture.dto.FurnitureDTO;
 
 public class UploadFileUtil
@@ -26,13 +27,36 @@ public class UploadFileUtil
 	// LoggerFactory.getLogger(UploadFileUtil.class);
 
 	// 서버 파일의 경로를 가지고 있는 String
-	private static final String loacalPathImgae = "D:/workspace/STS/ex01/src/main/webapp/resources/saveImage";
+	private static final String loacalPathImgae = "D:/workspace/STS/budongsang/Budongsan/ex00/src/main/webapp/resources/saveImage";
+	//뷰이미지 저장 갯수
+	private static int MAX_IMGCOUNT = 3;
 
+	//뷰이미지 저장 갯수 리턴 메서드
+	public static int getMAX_imgSize ()  { return MAX_IMGCOUNT;}
+	
+	// 뷰 이미지 저장  메서드
+	public static void saveViewImg (List<MultipartFile> files, String name, String Path) throws IOException
+	{
+		int index=0;
+		
+		  for (MultipartFile temp : files )
+			{
+				if (index >= UploadFileUtil.getMAX_imgSize())
+					break;
+		
+				UploadFileUtil.saveImg(temp.getBytes(), name+"_"+index ,Path);
+				index++;
+			}
+	}
+	
+	
+	
+	
 	// 데이터 베이스에서 파일 가져와서 서버에 저장하는 메서드
 	public static List<FurnitureDTO> DownloadImg(List<FurnitureDTO> list, String Path)
 	{
 		FurnitureDTO tempDTO = null;
-
+		
 		for (int i = 0; i < list.size(); i++)
 		{
 			tempDTO = list.get(i);
@@ -44,14 +68,22 @@ public class UploadFileUtil
 		return list;
 	}
 
-	// 이미지 파일을 저장하는 메서드 (실제 동작은 ImgSave)
+	// 이미지 파일을 저장하는 메서드 (실제 동작은 ImgSave) 리스트용
 	public static void saveImg(FurnitureDTO temp, String Path)
 	{
 
 		ImgSave(temp.getPicture(), ""+ temp.getId(), "jpg", Path);
 
 	}
+	
+	// 이미지 파일을 저장하는 메서드 (실제 동작은 ImgSave) 뷰용
+	public static void saveImg (byte[] temp, String name, String Path)
+	{
+		ImgSave(temp, ""+ name, "jpg", Path);
+	}
 
+	
+	
 	// 폴더가 생성 되지 않았을 경우 폴더를 생성 해주는 메서드
 	private static void isCreateFolder(String path)
 	{
@@ -63,10 +95,23 @@ public class UploadFileUtil
 		}
 	}
 	
+	//삭제 루틴
 	public static void ImgDelect (String path, String FileName)
 	{
 		DelectImg(loacalPathImgae,FileName);
 		DelectImg(path,FileName);
+	}
+	
+	// 뷰 이미지 삭제 루틴
+	public static void ImgViewDelect (String path, String FileName)
+	{	
+		for (int i =0; i<getMAX_imgSize(); i++)
+		{
+			System.out.println(FileName+"_"+i+".jpg");
+			DelectImg(loacalPathImgae,FileName+"_"+i+".jpg");
+			DelectImg(path,FileName+"_"+i+".jpg");
+		}
+		
 	}
 	
 	

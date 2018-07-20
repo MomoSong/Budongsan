@@ -52,9 +52,9 @@
 	
 	<!-- 게시판 글쓰기 : insert -->
 	<insert id="insert">
-		insert into furniturelist(id, picture, title, makecp, content, model_id, price )
+		insert into furniturelist(id, picture, title, makecp, content, model_id, price, UUID )
 		values(FurnitureID.nextval, #{picture,jdbcType=LONGVARBINARY} ,#{title},
-		#{makecp} , #{content}, #{model_id}, #{price})
+		#{makecp} , #{content}, #{model_id}, #{price}, #{UUID})
 	</insert>
 	
 	<!-- 게시판 글수정 처리 : update -->
@@ -80,7 +80,7 @@
 <!-- 	저장을 위한 시퀀스의 값을 가져오기 -->
 	<select id="titleid" resultType="Integer">
 	 select id from furniturelist
-	 	where title = #{title}
+	 	where UUID = #{UUID}
 	</select>
 	
 	<!-- 	삭제를 위한 시퀀스의 값을 가져오기 -->
