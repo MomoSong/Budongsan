@@ -5,8 +5,13 @@
 
 <configuration>
 
-	<typeAliases >
-		<typeAlias alias="LoginDTO" type="org.zerock.member.dto.LoginDTO"/>
-		<package name="org.zerock.member.dto"/>
+	<typeAliases>
+		<typeAlias alias="LoginDTO"
+			type="org.zerock.member.dto.LoginDTO" />
+			<typeAlias alias="FurnitureDTO"	type="org.zerock.furniture.dto.FurnitureDTO" />
+		<package name="org.zerock.member.dto" />
+		<package name="org.zerock.furniture.dto" />
 	</typeAliases>
+	
+
 </configuration>
