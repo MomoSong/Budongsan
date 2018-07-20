@@ -36,7 +36,7 @@ pageContext.setAttribute("absUri", request.getContextPath());
   
   <decorator:head></decorator:head>
   </head>
-  <body>
+<!--   <body> -->
   
   <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -155,7 +155,7 @@ pageContext.setAttribute("absUri", request.getContextPath());
   
   <decorator:body></decorator:body>
     
-  </body>
+<!--   </body> -->
 </html>
         
         
