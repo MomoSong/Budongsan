@@ -4,17 +4,29 @@
 
 <mapper namespace="org.zerock.mapper.MemberMapper">
 
-<select id="login" resultType="loginDTO">
+<select id="login" resultType="LoginDTO">
 	SELECT * FROM b_member WHERE email = #{email} AND pw = #{pw}
-</select>
-
-<select id="checkEmail" resultType="String">
-	SELECT email FROM b_member WHERE email = #{email}
 </select>
 
 <insert id="join" >
 	INSERT INTO b_member(email, pw, name, hp, addr, age, money)
 	VALUES(#{email}, #{pw}, #{name}, #{hp}, #{addr}, #{age}, 0)
 </insert>
+
+<select id="checkEmail" resultType="String">
+	SELECT email FROM b_member WHERE email = #{email}
+</select>
+
+<update id="createAuthKey">
+	update b_member set user_authCode = #{user_authCode} where email = #{email}
+</update>
+
+<update id="userAuth">
+	update b_member set user_authStatus = '1' where email = #{email}
+</update>
+
+<select id="selectUserAuth" resultType="String">
+	SELECT user_authStatus FROM b_member WHERE email = #{email}
+</select>
 
 </mapper>
