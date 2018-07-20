@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,8 +24,8 @@ public class MemberController {
 	@Inject
 	private MemberService service;
 	
-	@Inject
-	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	
+	private BCryptPasswordEncoder bcryptPasswordEncoder = new BCryptPasswordEncoder();
 	
 	//로그아웃을 시켜준다.
 	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
