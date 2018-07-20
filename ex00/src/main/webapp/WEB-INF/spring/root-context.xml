@@ -31,7 +31,7 @@
 	 	 value="classpath:/mybatis-config.xml" />
 	 	<!-- DB에서 실행할 sql 문장을 태그로 정의해 놓는다. -->
 	 	<property name="mapperLocations" 
-	 	 value="classpath:*/mappers/**/*Mapper.xml" />
+	 	 value="classpath:/mappers/**/*Mapper.xml" />
 	</bean>
 	
 	<!-- Mybatis DB 프로그램의 자동화 객체 -> template -->

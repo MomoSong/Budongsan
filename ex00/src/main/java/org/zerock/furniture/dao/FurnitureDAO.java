@@ -25,7 +25,7 @@ public class FurnitureDAO
 	{
 		List<FurnitureDTO> temp;
 		System.out.println(getClass().getSimpleName() + ".list()");
-		temp = sqlSession.selectList("org.zerock.mapper.BoardMapper.list", cri);
+		temp = sqlSession.selectList("org.zerock.mapper.furnitureMapper.list", cri);
 		//temp = UploadFileUtil.DownloadImg(temp,Path);
 		
 		return temp;
@@ -36,7 +36,7 @@ public class FurnitureDAO
 	{
 		// TODO Auto-generated method stub
 		System.out.println(getClass().getSimpleName() + ".view()");
-		return sqlSession.selectOne("org.zerock.mapper.BoardMapper.view", id);
+		return sqlSession.selectOne("org.zerock.mapper.furnitureMapper.view", id);
 	}
 
 	// 게시판 글쓰기
@@ -44,7 +44,7 @@ public class FurnitureDAO
 	{
 		// TODO Auto-generated method stub
 		System.out.println(getClass().getSimpleName() + ".insert()");
-		sqlSession.insert("org.zerock.mapper.BoardMapper.insert", boardDTO);
+		sqlSession.insert("org.zerock.mapper.furnitureMapper.insert", boardDTO);
 	}
 
 	// 게시판 글수정 처리
@@ -52,7 +52,7 @@ public class FurnitureDAO
 	{
 		// TODO Auto-generated method stub
 		System.out.println(getClass().getSimpleName() + ".update()");
-		sqlSession.update("org.zerock.mapper.BoardMapper.update", boardDTO);
+		sqlSession.update("org.zerock.mapper.furnitureMapper.update", boardDTO);
 	}
 
 	// 게시판 글보기 1 증가 처리
@@ -60,7 +60,7 @@ public class FurnitureDAO
 	{
 		// TODO Auto-generated method stub
 		System.out.println(getClass().getSimpleName() + ".increase()");
-		sqlSession.update("org.zerock.mapper.BoardMapper.increase", id);
+		sqlSession.update("org.zerock.mapper.furnitureMapper.increase", id);
 	}
 
 	// 게시판 글삭제 - 글번호를 받아서 처리
@@ -68,7 +68,7 @@ public class FurnitureDAO
 	{
 		// TODO Auto-generated method stub
 		System.out.println(getClass().getSimpleName() + ".delete()");
-		sqlSession.delete("org.zerock.mapper.BoardMapper.delete", id);
+		sqlSession.delete("org.zerock.mapper.furnitureMapper.delete", id);
 	}
 
 	// 게시판 전체 글의 갯수 구하는 메서드
@@ -76,7 +76,7 @@ public class FurnitureDAO
 	{
 		// TODO Auto-generated method stub
 		System.out.println(getClass().getSimpleName() + ".getTotalCount()");
-		return sqlSession.selectOne("org.zerock.mapper.BoardMapper.totalCount", cri);
+		return sqlSession.selectOne("org.zerock.mapper.furnitureMapper.totalCount", cri);
 	}
 
 	// 게시판의 이름을 검색하여 시퀀스 번호를 가져오는 메서드
@@ -84,13 +84,13 @@ public class FurnitureDAO
 	{
 		System.out.println(getClass().getSimpleName() + ".getTitleId()");
 		System.out.println(boardDTO.getTitle());
-		return sqlSession.selectOne("org.zerock.mapper.BoardMapper.titleid", boardDTO);
+		return sqlSession.selectOne("org.zerock.mapper.furnitureMapper.titleid", boardDTO);
 	}
 	
 	public String getIdTitle (FurnitureDTO boardDTO)
 	{
 		System.out.println(getClass().getSimpleName() + ".getTitleId()");
-		return sqlSession.selectOne("org.zerock.mapper.BoardMapper.titleName", boardDTO);
+		return sqlSession.selectOne("org.zerock.mapper.furnitureMapper.titleName", boardDTO);
 	}
 
 	
