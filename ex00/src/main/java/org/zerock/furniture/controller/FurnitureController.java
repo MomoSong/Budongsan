@@ -126,10 +126,6 @@ public class FurnitureController
 			MultipartHttpServletRequest multipartHttpServletRequest, HttpSession session, MultipartFile file ) throws IOException, Exception
 	{
 		System.out.println(getClass().getSimpleName() + ".write():POST");
-		//System.out.println(boardDTO);
-		//System.out.println(file);
-		//System.out.println(file.getSize());
-		//System.out.println(files[0].getSize());
 		String Path = session.getServletContext().getRealPath("/resources/saveImage"); 
 		
 		List<MultipartFile> files = multipartHttpServletRequest.getFiles("files");
