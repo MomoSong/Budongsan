@@ -11,10 +11,10 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="org.mybatis.spring">
-		<level value="DEBUG" />
-		<appender-ref ref="console" />
-	</logger>
+<!-- 	<logger name="org.mybatis.spring"> -->
+<!-- 		<level value="DEBUG" /> -->
+<!-- 		<appender-ref ref="console" /> -->
+<!-- 	</logger> -->
 	
 	<logger name="org.zerock.web">
 		<level value="info" />
@@ -39,7 +39,7 @@
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="warn" />
+		<priority value="info" />
 		<appender-ref ref="console" />
 	</root>
 	
