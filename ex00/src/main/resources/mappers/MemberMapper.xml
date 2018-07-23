@@ -65,4 +65,18 @@
 	SELECT login FROM b_member WHERE email = #{email}
 </select>
 
+<!--회원 게시판 리스트 : select -->
+<select id="list" resultType="LoginDTO">
+		select *
+		from(
+			select rownum rnum, name, email, age, addr, grade, money
+			from (
+				select name, email, age, addr, grade, money
+				from b_member
+				
+			) order by rnum desc
+		)
+		where rnum between #{startRow} and #{endRow}
+</select>
+
 </mapper>
