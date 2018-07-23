@@ -1,12 +1,14 @@
 package org.zerock.member.dao;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
+import org.zerock.member.dto.Criteria;
 import org.zerock.member.dto.LoginDTO;
 
 @Repository
@@ -101,5 +103,10 @@ public class MemberDao {
 		map.put("pw", pw);
 		map.put("email", email);
 		sqlSession.insert(namespace + "setPw", map);
+	}
+	
+	//리스트를 호출하는 메서드
+	public List<LoginDTO> list(Criteria cri) {
+		return sqlSession.selectList(namespace + "list", cri);
 	}
 }

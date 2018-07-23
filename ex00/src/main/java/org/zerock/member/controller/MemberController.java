@@ -84,10 +84,10 @@ public class MemberController {
 	}
 
 	// 회원가입 주소를 입력하면 회원가입 폼으로 안내한다.
-		@RequestMapping(value = "/join.do", method = RequestMethod.GET)
-		public String join() {
-			return "member/joinForm";
-		}
+	@RequestMapping(value = "/join.do", method = RequestMethod.GET)
+	public String join() {
+		return "member/joinForm";
+	}
 
 	// 회원가입 폼에서 자료를 입력해서 들어오는 컨트롤러 메서드, 비밀번호를 암호화한다.
 	@RequestMapping(value = "/join.do", method = RequestMethod.POST)
@@ -102,14 +102,10 @@ public class MemberController {
 		return "redirect:/";
 	}
 
-	//앞으로 구현할 리스트 메서드
+	//리스트 메서드 회원등급이 9인 관리자만 접근할 수 있는 메서드
 	@RequestMapping(value = "list.do", method = RequestMethod.GET)
 	public String list(Model model, Criteria cri, LoginDTO dto) {
-		if (dto.getGrade() == 9) {
-			// model.addAttribute("list", service.list(cri));
-		} else {
-			model.addAttribute("list", "관리자만 접근 가능합니다.");
-		}
+		model.addAttribute("list", service.list(cri)); //리스트를 호출해서 model에 담아준다.
 		return "member/list";
 	}
 

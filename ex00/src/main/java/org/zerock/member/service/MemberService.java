@@ -1,6 +1,7 @@
 package org.zerock.member.service;
 
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.mail.MessagingException;
@@ -9,6 +10,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.zerock.member.dao.MemberDao;
+import org.zerock.member.dto.Criteria;
 import org.zerock.member.dto.LoginDTO;
 import org.zerock.member.util.MailHandler;
 import org.zerock.member.util.TempKey;
@@ -105,5 +107,10 @@ public class MemberService {
 	//비밀번호 찾기할때 새로운 비밀번호를 저장하는 함수
 	public void setPw(String pw, String email) {
 		dao.setPw(pw, email);
+	}
+
+	//리스트를 호출하는 메서드 
+	public List<LoginDTO> list(Criteria cri) {
+		return dao.list(cri);
 	}
 }

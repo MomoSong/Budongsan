@@ -49,18 +49,18 @@ pageContext.setAttribute("absUri", request.getContextPath());
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="#">매물정보</a>
+              <a class="nav-link" href="/agentboard/list.do">매물정보</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">뉴스</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/ds/chart.do">매매 거래동향 </a>
+              <a class="nav-link" href="#">공시지가 </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">중고가구거래 </a>
+              <a class="nav-link" href="/furniture/list.do">중고가구거래 </a>
             </li>
-             
+            
            
            <c:if test="<%=dto != null %>"> 
             <c:choose>
