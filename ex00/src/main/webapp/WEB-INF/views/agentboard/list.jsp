@@ -169,7 +169,7 @@ th {
 					</ul>
 	    		</td>
 	    	</tr>
-	    	<tr>
+	    	<tr> 
 	    		<td colspan="5">
 	    			<button id="writeBtn">글쓰기</button>
 	    			<button id="reloadBtn">새로고침</button>
