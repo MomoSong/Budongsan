@@ -25,7 +25,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 	background: #eee; cursor: pointer;
 }
 fieldset {
-	color: white; background-color:#48D1CC; font-size: 30pt; font-style: italic;
+	color: white; background-color:black; font-size: 30pt; font-style: italic;
 }
 th {
 	color: white; background-color:black; font-size: 13pt;
@@ -76,7 +76,7 @@ th {
 </script>
 </head>
 <body>
-<!-- <div class="container"> -->
+<div class="container">
   <div class="panel panel-default">
   <fieldset align="center">
 	<strong>지역별 추천방</strong>
@@ -126,8 +126,6 @@ th {
      <p class = "allPost" align="right" style="background-color:black; color: white; font-size: large;"> 
      	전체 글: &nbsp; <strong> <c:out value ="${cri.totalCount} " /> </strong> 개 </p>
       <table class="table">
-       <div class="container">
-        <div class ="row">
 	    <!-- 데이터 만큼 반복 시작 -->
 	    <c:forEach items="${list }" var="dto">
 	      <div class="col-md-4">
@@ -140,8 +138,6 @@ th {
 	        </div>
 	      </div>
 	    </c:forEach>
-	    </div>
-	    </div>
 	    
 	    
 	    <!-- 데이터 만큼 반복 끝 -->
@@ -183,7 +179,8 @@ th {
 	  </table>
     </div>
   </div>
-<!-- </div> -->
+ </div>
+
 
 </body>
 </html>
