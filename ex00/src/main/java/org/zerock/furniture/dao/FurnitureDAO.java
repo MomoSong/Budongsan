@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.multipart.MultipartFile;
 import org.zerock.furniture.dto.FurnitureDTO;
+import org.zerock.furniture.dto.Furniture_CommentDTO;
 import org.zerock.furniture.util.UploadFileUtil;
 import org.zerock.furniture.dto.Criteria;
 
@@ -38,7 +39,9 @@ public class FurnitureDAO
 		System.out.println(getClass().getSimpleName() + ".view()");
 		return sqlSession.selectOne("org.zerock.mapper.furnitureMapper.view", id);
 	}
-
+	
+	
+	
 	// 게시판 글쓰기
 	public void insert(FurnitureDTO boardDTO)
 	{
@@ -46,7 +49,12 @@ public class FurnitureDAO
 		System.out.println(getClass().getSimpleName() + ".insert()");
 		sqlSession.insert("org.zerock.mapper.furnitureMapper.insert", boardDTO);
 	}
-
+	
+	public void insertComment (Furniture_CommentDTO boardDTO)
+	{
+		System.out.println(getClass().getSimpleName() + ".insertComment()");
+		sqlSession.insert("org.zerock.mapper.furnitureMapper.insertComment", boardDTO);
+	}
 	// 게시판 글수정 처리
 	public void update(FurnitureDTO boardDTO)
 	{

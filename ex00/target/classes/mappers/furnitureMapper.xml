@@ -118,6 +118,12 @@
 		</if>
 	</sql>
 	
+	<insert id="insertComment">
+	insert into furniture_comments(no, assessment, userid, comments, writedate )
+		values(furniture_comment_seq.nextval, #{assessment} ,#{userid},
+		#{comment} ,sysdate)
+	</insert>
+	
 	
 	
 </mapper>

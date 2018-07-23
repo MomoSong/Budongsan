@@ -86,6 +86,7 @@ public class MemberController {
 	// 회원가입 주소를 입력하면 회원가입 폼으로 안내한다.
 	@RequestMapping(value = "/join.do", method = RequestMethod.GET)
 	public String join() {
+		System.out.println("member/joinForm");
 		return "member/joinForm";
 	}
 

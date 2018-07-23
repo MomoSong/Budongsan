@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 import org.zerock.furniture.dto.FurnitureDTO;
+import org.zerock.furniture.dto.Furniture_CommentDTO;
 import org.zerock.furniture.dao.FurnitureDAO;
 import org.zerock.furniture.dto.Criteria;
 
@@ -69,7 +70,12 @@ public class FurnitureService
 		System.out.println(getClass().getSimpleName() + ".getTitleID()");
 		return dao.getIdTitle(boardDTO);	
 	}
-
+	
+	public void insertComment (Furniture_CommentDTO boardDTO)
+	{
+		System.out.println(getClass().getSimpleName() + ".insertComment()");
+		dao.insertComment(boardDTO);
+	}
 	
 
 }
