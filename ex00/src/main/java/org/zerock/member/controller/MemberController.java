@@ -84,10 +84,10 @@ public class MemberController {
 	}
 
 	// 회원가입 주소를 입력하면 회원가입 폼으로 안내한다.
-	@RequestMapping(value = "/join.do", method = RequestMethod.GET)
-	public String join() {
-		return "member/joinForm";
-	}
+		@RequestMapping(value = "/join.do", method = RequestMethod.GET)
+		public String join() {
+			return "member/joinForm";
+		}
 
 	// 회원가입 폼에서 자료를 입력해서 들어오는 컨트롤러 메서드, 비밀번호를 암호화한다.
 	@RequestMapping(value = "/join.do", method = RequestMethod.POST)
