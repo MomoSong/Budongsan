@@ -19,6 +19,6 @@ public class DsController {
 	@RequestMapping(value = "ds/chart.do", method = RequestMethod.GET)
 	public String list(Model model) {
 		return "ds/ds";
-	}
+	} 
 	
 }

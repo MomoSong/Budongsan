@@ -60,7 +60,7 @@ pageContext.setAttribute("absUri", request.getContextPath());
             <li class="nav-item">
               <a class="nav-link" href="#">중고가구거래 </a>
             </li>
-            
+             
            
            <c:if test="<%=dto != null %>"> 
             <c:choose>

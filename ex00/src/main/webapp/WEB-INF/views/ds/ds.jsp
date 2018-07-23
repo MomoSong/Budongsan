@@ -19,7 +19,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 .data:hover {
 	background: #eee; cursor: pointer;
 }
-</style>
+</style> 
 
 <script type="text/javascript">
 	$(document).ready(function(){
