@@ -43,7 +43,6 @@ pageContext.setAttribute("absUri", request.getContextPath());
       <div class="container">
         <a class="navbar-brand" href="/">부동산닷컴</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
           <i class="fa fa-bars"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -55,7 +54,7 @@ pageContext.setAttribute("absUri", request.getContextPath());
               <a class="nav-link" href="#">뉴스</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">공시지가 </a>
+              <a class="nav-link" href="/ds/chart.do">매매 거래동향 </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/furniture/list.do">중고가구거래 </a>
