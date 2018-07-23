@@ -9,13 +9,19 @@ public class LoginDTO {
 	String email, pw, name, hp, addr;
 	int age, money, grade;
 	boolean login;
-	Date lastLog;
+	Date lastLog, joinDate;
 	MultipartFile photo;
 	String user_authCode;
 	boolean user_authStatus;
 	
 	
 	
+	public Date getJoinDate() {
+		return joinDate;
+	}
+	public void setJoinDate(Date joinDate) {
+		this.joinDate = joinDate;
+	}
 	public boolean isUser_authStatus() {
 		return user_authStatus;
 	}
@@ -114,8 +120,9 @@ public class LoginDTO {
 	public String toString() {
 		return "LoginDTO [email=" + email + ", pw=" + pw + ", name=" + name + ", hp=" + hp + ", addr=" + addr + ", age="
 				+ age + ", money=" + money + ", grade=" + grade + ", login=" + login + ", lastLog=" + lastLog
-				+ ", photo=" + photo + ", user_authCode=" + user_authCode + ", user_authStatus=" + user_authStatus
-				+ "]";
+				+ ", joinDate=" + joinDate + ", photo=" + photo + ", user_authCode=" + user_authCode
+				+ ", user_authStatus=" + user_authStatus + "]";
 	}
+	
 	
 }

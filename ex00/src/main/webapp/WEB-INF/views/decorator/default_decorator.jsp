@@ -36,12 +36,12 @@ pageContext.setAttribute("absUri", request.getContextPath());
   
   <decorator:head></decorator:head>
   </head>
-<!--   <body> -->
+  <body>
   
   <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand" href="/">부동산닷컴</a>
+        <a class="navbar-brand" href="index.html">부동산닷컴</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
@@ -61,7 +61,7 @@ pageContext.setAttribute("absUri", request.getContextPath());
               <a class="nav-link" href="#">공시지가 </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/furniture/list.do">중고가구거래 </a>
+              <a class="nav-link" href="#">중고가구거래 </a>
             </li>
             
            
@@ -69,16 +69,19 @@ pageContext.setAttribute("absUri", request.getContextPath());
             <c:choose>
             	<c:when test="<%= dto.getLogin()==true && dto.getGrade()==9 %>">
             		<li class="nav-item">
-            		  <a class="nav-link" href="/member/logout.do">로그아웃</a>
+            		  <a class="nav-link" href="/member/profile.do"><%=dto.getName() %>님</a>
+            		</li>  
+            		<li class="nav-item">
+            		  <a class="nav-link" href="/member/list.do">회원리스트</a>
             		</li>
             		<li class="nav-item">
-            		  <a class="nav-link" href="#">회원리스트</a>
-            		</li>
+            		  <a class="nav-link" href="/member/logout.do">로그아웃</a>
+            		</li>	
             	</c:when>
             	
             	<c:when test="<%= dto.getLogin()==true && dto.getGrade()==1 %>">
             		<li class="nav-item">
-            		  <a class="nav-link" href="#"><%=dto.getName() %>님</a>
+            		  <a class="nav-link" href="/member/profile.do"><%=dto.getName() %>님</a>
             		</li>
             		<li class="nav-item">
             		  <a class="nav-link" href="/member/logout.do">로그아웃</a>
@@ -155,7 +158,7 @@ pageContext.setAttribute("absUri", request.getContextPath());
   
   <decorator:body></decorator:body>
     
-<!--   </body> -->
+  </body>
 </html>
         
         
