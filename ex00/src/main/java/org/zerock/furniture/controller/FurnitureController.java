@@ -76,6 +76,13 @@ public class FurnitureController
 		return "furniture/view";
 	}
 
+	@RequestMapping(value = "/furniture/comment.do", method = RequestMethod.GET)
+	public String comment ()
+	{
+		System.out.println(getClass().getSimpleName() + ".comment()");	
+		return "furniture/list";
+	}
+	
 	// 글쓰기 폼 -> servlet-context.xml에 view-controller tag로 지정
 	@RequestMapping(value = "/furniture/write.do", method = RequestMethod.GET)
 	public String write()
@@ -92,44 +99,27 @@ public class FurnitureController
 			MultipartHttpServletRequest multipartHttpServletRequest, HttpSession session, MultipartFile file ) throws IOException, Exception
 	{
 		
-		
 		System.out.println(getClass().getSimpleName() + ".write():POST");
 		int index = 0;
 		String Path = session.getServletContext().getRealPath("/resources/saveImage"); 
 		
-		
 		List<MultipartFile> files = multipartHttpServletRequest.getFiles("files");
-		
-		
-		
-		
 		
 		boardDTO.setUUID( UUID.randomUUID().toString());
 		boardDTO.setPicture(file.getBytes());
 		
 		 service.insert(boardDTO); 
-		
-		 
-		 int id = service.getTitleID(boardDTO);
+			 
+		int id = service.getTitleID(boardDTO);
 		 
 		  boardDTO.setId(id);
-		  
+	 
 		  // 리스트 이미지 저장
 		  UploadFileUtil.saveImg(boardDTO, Path);
 		  
 		  // 뷰 이미지 저장
 		  UploadFileUtil.saveViewImg(files, ""+id, Path);
-//		  for (MultipartFile temp : files )
-//			{
-//				if (index >= UploadFileUtil.getMAX_imgSize())
-//					break;
-//				
-//				//System.out.println(temp.getOriginalFilename());
-//				UploadFileUtil.saveImg(temp.getBytes(), ""+id+"_"+index ,Path);
-//				index++;
-//			}
-		  
-		
+
 		// 딱 한번만 적용되고 다음에는 없어지는 속성 저장
 		rttr.addFlashAttribute("msg", "writeOK");
 		// prefix + return String + suffix

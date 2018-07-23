@@ -19,6 +19,8 @@
 <!-- <link href="/resources/css/carousel.css" rel="stylesheet"> -->
 
 
+
+
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -30,6 +32,18 @@
 
 
 <script type="text/javascript">
+
+
+// function add_item(){
+ 
+// 	alert("add_item 실행")
+//     if (document.getElementById('commentdiv').style.display == "none") 
+//     	document.getElementById('commentdiv').style.display = "block"
+//     if (document.getElementById('commentdiv').style.display = "block")
+//     	document.getElementById('commentdiv').style.display = "none"
+// }
+
+
 	$(document).ready(function() {
 
 		// 버튼 이벤트 처리
@@ -55,7 +69,20 @@
 			$("#dataForm").submit();
 		});
 
-		//글 수정 후 경고
+		// 댓글 작성 버튼
+		$("#updateBtn").click(function() {
+			alert("댓글 작성 버튼");
+		});
+		
+		 $("#commitBtn").click(function () {
+			 alert("add_item 실행");
+			 var e = document.getElementById('commentdiv');
+		        if ( e.style.display == 'block' )
+		            e.style.display = 'none';
+		        else
+		            e.style.display = 'block';
+		 });
+
 		$
 		{
 			msg == "updateOK" ? "alert('수정이 완료되었습니다.')" : ""
@@ -116,12 +143,12 @@
 						</div>
 					</div>
 
-					<a class="left carousel-control"
-						href="#myCarousel2" role="button" data-slide="prev"> <span
+					<a class="left carousel-control" href="#myCarousel2" role="button"
+						data-slide="prev"> <span
 						class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 						<span class="sr-only">Previous</span>
-					</a> <a class="right carousel-control" href="#myCarousel2" role="button"
-						data-slide="next"> <span
+					</a> <a class="right carousel-control" href="#myCarousel2"
+						role="button" data-slide="next"> <span
 						class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 						<span class="sr-only">Next</span>
 					</a>
@@ -165,10 +192,25 @@
 			<button id="updateBtn" class="btn btn-success">수정</button>
 			<button id="deleteBtn" class="btn btn-warning">삭제</button>
 			<button id="listBtn" class="btn btn-danger">뒤로가기</button>
+			<button id="commitBtn" class="btn btn-success" onclick="add_item()">댓글 작성</button>
 		</div>
 	</div>
+	</br>
+	
+	<div id="field"></div>
+	
+	<div class="container" id ="commentdiv" style="display:none;">
+		<label class="control-label col-sm-2" for="title">구매평 작성</label> <input
+			type="text" class="form-control" id="comments" name="comments"
+			pattern=".{4,100}" placeholder="의견을 적어주세요"> 
+		<input class="w3-check" type="radio" name="check" checked="checked" value ="5"> <label>매우좋음</label>
+		<input class="w3-check" type="radio" name="check" value ="4"> <label>좋음</label>
+		<input class="w3-check" type="radio" name="check" value ="3"> <label>보통</label>
+		<input class="w3-check" type="radio" name="check" value ="2"> <label>조금나쁨</label>
+		<input class="w3-check" type="radio" name="check" value ="1"> <label>매우나쁨</label>
+	</div>
 
-
+	</br>
 	<!-- Footer -->
 	<footer class="py-5 bg-dark">
 		<div class="container">
