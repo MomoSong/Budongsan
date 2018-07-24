@@ -79,4 +79,9 @@
 		where rnum between #{startRow} and #{endRow}
 </select>
 
+<!-- 로그인시 로그인한 데이터 모두를 dto 객체에 넘겨준다. -->
+<select id="view" resultType="LoginDTO">
+	SELECT name, email, age, addr, grade, money FROM b_member WHERE email = #{email}
+</select>
+
 </mapper>
