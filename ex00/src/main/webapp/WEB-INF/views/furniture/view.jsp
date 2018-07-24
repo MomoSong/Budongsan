@@ -68,21 +68,16 @@
 			$("#dataForm").attr("action", "list.do");
 			$("#dataForm").submit();
 		});
-
-		// 댓글 작성 버튼
-		$("#updateBtn").click(function() {
-			alert("댓글 작성 버튼");
-		});
 		
-		 $("#commitBtn").click(function () {
-			 alert("add_item 실행");
+		 $("#commentBtn").click(function () {
+			// alert("add_item 실행");
 			 var e = document.getElementById('commentdiv');
 		        if ( e.style.display == 'block' )
 		            e.style.display = 'none';
 		        else
 		            e.style.display = 'block';
 		 });
-
+		 
 		$
 		{
 			msg == "updateOK" ? "alert('수정이 완료되었습니다.')" : ""
@@ -97,12 +92,14 @@
 		list : 한페이지의 데이터 갯수, 페이지, 검색 타입, 검색어
 -->
 	<form id="dataForm">
-		<input name="id" value="${param.id }" type="hidden" id="id"> <input
-			name="page" value="${param.page }" type="hidden"> <input
-			name="perPageNum" value="${param.perPageNum }" type="hidden">
+		<input name="id" value="${param.id }" type="hidden" id="id">
+		<input name="page" value="${param.page }" type="hidden"> 
+		<input name="perPageNum" value="${param.perPageNum }" type="hidden">
 		<input name="searchType" value="${param.searchType }" type="hidden">
 		<input name="keyword" value="${param.keyword }" type="hidden">
 	</form>
+
+
 
 
 	<div class="container">
@@ -181,18 +178,21 @@
 					<hr>
 					<h4>구매자의 상품 평가</h4>
 				</div>
-
+				
+			<c:forEach items="${commentlist }" var="commentlist">
 				<div class="card-body">
-					<p>구매자의 상품평</p>
-					<small class="text-muted">아이디, 2018.07.18</small>
+					<p>${commentlist.comments }</p>
+					<small class="text-muted">"${commentlist.userid }, ${commentlist.writedate }"</small>
 					<hr>
 				</div>
+			</c:forEach>
 			</div>
-
+			
+			
 			<button id="updateBtn" class="btn btn-success">수정</button>
 			<button id="deleteBtn" class="btn btn-warning">삭제</button>
 			<button id="listBtn" class="btn btn-danger">뒤로가기</button>
-			<button id="commitBtn" class="btn btn-success" onclick="add_item()">댓글 작성</button>
+			<button id="commentBtn" class="btn btn-success" onclick="add_item()">댓글 작성</button>
 		</div>
 	</div>
 	</br>
@@ -200,18 +200,22 @@
 	<div id="field"></div>
 	
 	<div class="container" id ="commentdiv" style="display:none;">
-		<label class="control-label col-sm-2" for="title">구매평 작성</label> <input
+		<form class="form-horizontal" method="post">
+		<label class="control-label col-sm-2" for="comments">구매평 작성</label> <input
 			type="text" class="form-control" id="comments" name="comments"
 			pattern=".{4,100}" placeholder="의견을 적어주세요"> 
-		<input class="w3-check" type="radio" name="check" checked="checked" value ="5"> <label>매우좋음</label>
-		<input class="w3-check" type="radio" name="check" value ="4"> <label>좋음</label>
-		<input class="w3-check" type="radio" name="check" value ="3"> <label>보통</label>
-		<input class="w3-check" type="radio" name="check" value ="2"> <label>조금나쁨</label>
-		<input class="w3-check" type="radio" name="check" value ="1"> <label>매우나쁨</label>
+		<input class="w3-check" type="radio" name="assessment" checked="checked" value ="5"> <label>매우좋음</label>
+		<input class="w3-check" type="radio" name="assessment" value ="4"> <label>좋음</label>
+		<input class="w3-check" type="radio" name="assessment" value ="3"> <label>보통</label>
+		<input class="w3-check" type="radio" name="assessment" value ="2"> <label>조금나쁨</label>
+		<input class="w3-check" type="radio" name="assessment" value ="1"> <label>매우나쁨</label>
+		
+		</br>
+			<button type="submit" class="btn btn-success">제출</button>
+		</form>
 	</div>
 
 	</br>
-	<!-- Footer -->
 	<footer class="py-5 bg-dark">
 		<div class="container">
 			<p class="m-0 text-center text-white">Copyright &copy; Your
