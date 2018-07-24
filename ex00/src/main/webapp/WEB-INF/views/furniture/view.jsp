@@ -168,11 +168,14 @@
 					<h3>
 						모델명: <span class='text-muted'>${dto.model_id }</span>
 					</h3>
-					</br>
+					<h3>
+						수량: <span class='text-muted'>${dto.counts }</span>
+					</h3> 
 				</div>
 			</div>
-
-
+			
+			</br>
+			
 			<div class="card card-outline-secondary my-4">
 				<div class="card-header">
 					<hr>
@@ -192,7 +195,10 @@
 			<button id="updateBtn" class="btn btn-success">수정</button>
 			<button id="deleteBtn" class="btn btn-warning">삭제</button>
 			<button id="listBtn" class="btn btn-danger">뒤로가기</button>
+<%-- 		 	<p>"${sessionScope.login.email}"</p> --%>
+		 	<c:if test="${!empty sessionScope.login.email}">
 			<button id="commentBtn" class="btn btn-success" onclick="add_item()">댓글 작성</button>
+			</c:if>
 		</div>
 	</div>
 	</br>

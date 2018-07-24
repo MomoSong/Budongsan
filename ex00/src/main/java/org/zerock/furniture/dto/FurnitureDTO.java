@@ -6,7 +6,7 @@ import java.util.Date;
 public class FurnitureDTO
 {
 
-	private int id, price,hit;
+	private int id, price,hit, counts;
 	private String cpn,title,makecp,content,model_id,extension,UUID;
 	private Date writeDate;
 	private byte[] picture;
@@ -21,6 +21,14 @@ public class FurnitureDTO
 	}
 	
 	
+	public int getCounts()
+	{
+		return counts;
+	}
+	public void setCounts(int counts)
+	{
+		this.counts = counts;
+	}
 	public String getTitle()
 	{
 		return title;
@@ -122,10 +130,13 @@ public class FurnitureDTO
 	@Override
 	public String toString()
 	{
-		return "FurnitureDTO [id=" + id + ", price=" + price + ", hit=" + hit + ", cpn=" + cpn + ", title=" + title
-				+ ", makecp=" + makecp + ", content=" + content + ", model_id=" + model_id + ", extension=" + extension
-				+ ", UUID=" + UUID + ", writeDate=" + writeDate + ", picture=" + Arrays.toString(picture) + "]";
+		return "FurnitureDTO [id=" + id + ", price=" + price + ", hit=" + hit + ", counts=" + counts + ", cpn=" + cpn
+				+ ", title=" + title + ", makecp=" + makecp + ", content=" + content + ", model_id=" + model_id
+				+ ", extension=" + extension + ", UUID=" + UUID + ", writeDate=" + writeDate + ", picture="
+				+ Arrays.toString(picture) + "]";
 	}
+	
+	
 	
 	
 	

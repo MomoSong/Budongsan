@@ -73,9 +73,7 @@ public class FurnitureController
 	{
 		System.out.println(getClass().getSimpleName() + ".view()");
 		model.addAttribute("dto", service.view(id, true));
-		//List<Furniture_CommentDTO> list = service.commentlist(id);
-		//System.out.println(list);
-		
+	
 		model.addAttribute("commentlist",service.commentlist(id));
 		return "furniture/view";
 	}
@@ -104,7 +102,6 @@ public class FurnitureController
 	{
 		
 		System.out.println(getClass().getSimpleName() + ".write():POST");
-		int index = 0;
 		String Path = session.getServletContext().getRealPath("/resources/saveImage"); 
 		
 		List<MultipartFile> files = multipartHttpServletRequest.getFiles("files");

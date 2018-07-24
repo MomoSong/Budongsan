@@ -44,7 +44,7 @@
 	<!-- 게시판 글보기 : select =>view, update form -->
 <!-- 	<select id="view" resultType="org.zerock.board.dto.BoardDTO"> -->
 	<select id="view" resultType="FurnitureDTO">
-		select id, title, writeDate, hit,makecp,content,model_id,price
+		select id, title, writeDate, hit,makecp,content,model_id,price,counts
 		from furniturelist
 		where id = #{id}
 		
@@ -58,9 +58,9 @@
 	
 	<!-- 게시판 글쓰기 : insert -->
 	<insert id="insert">
-		insert into furniturelist(id, picture, title, makecp, content, model_id, price, UUID )
+		insert into furniturelist(id, picture, title, makecp, content, model_id, price, UUID, counts )
 		values(FurnitureID.nextval, #{picture,jdbcType=LONGVARBINARY} ,#{title},
-		#{makecp} , #{content}, #{model_id}, #{price}, #{UUID})
+		#{makecp} , #{content}, #{model_id}, #{price}, #{UUID}, #{counts})
 	</insert>
 	
 	<!-- 게시판 글수정 처리 : update -->
