@@ -35,6 +35,11 @@
 		where rnum between #{startRow} and #{endRow}
 	</select>
 	
+	<select id="commentlist" resultType="Furniture_CommentDTO">
+	select userid, writedate, comments from furniture_comments where furnitureid = #{id}
+	order by no desc
+	</select>
+	
 	
 	<!-- 게시판 글보기 : select =>view, update form -->
 <!-- 	<select id="view" resultType="org.zerock.board.dto.BoardDTO"> -->
@@ -42,6 +47,7 @@
 		select id, title, writeDate, hit,makecp,content,model_id,price
 		from furniturelist
 		where id = #{id}
+		
 	</select>
 	
 	<!-- 게시판 글보기 1증가 : update -->
@@ -119,9 +125,9 @@
 	</sql>
 	
 	<insert id="insertComment">
-	insert into furniture_comments(no, assessment, userid, comments, writedate )
+	insert into furniture_comments(no, assessment, userid, comments, writedate,furnitureid )
 		values(furniture_comment_seq.nextval, #{assessment} ,#{userid},
-		#{comment} ,sysdate)
+		#{comments} ,sysdate, #{furnitureid})
 	</insert>
 	
 	

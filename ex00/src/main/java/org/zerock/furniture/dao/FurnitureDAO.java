@@ -100,6 +100,12 @@ public class FurnitureDAO
 		System.out.println(getClass().getSimpleName() + ".getTitleId()");
 		return sqlSession.selectOne("org.zerock.mapper.furnitureMapper.titleName", boardDTO);
 	}
+	
+	public List<Furniture_CommentDTO> commentlist (int id)
+	{
+		System.out.println(getClass().getSimpleName() + ".commentlist()");
+		return sqlSession.selectList("org.zerock.mapper.furnitureMapper.commentlist", id);
+	}
 
 	
 	

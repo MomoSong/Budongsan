@@ -77,5 +77,10 @@ public class FurnitureService
 		dao.insertComment(boardDTO);
 	}
 	
+	public List<Furniture_CommentDTO> commentlist (int id)
+	{
+		System.out.println(getClass().getSimpleName() + ".commentlist()");
+		return dao.commentlist(id);
+	}
 
 }

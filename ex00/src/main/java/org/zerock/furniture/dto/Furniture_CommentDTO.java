@@ -4,11 +4,21 @@ import java.sql.Date;
 
 public class Furniture_CommentDTO
 {
-	private int id,assessment;
-	private String userid, comment;
+	private int id,assessment,furnitureid;
+	
+	private String userid, comments;
 	private Date writedate;
 	
 	
+	public int getFurnitureid()
+	{
+		return furnitureid;
+	}
+	public void setFurnitureid(int furnitureid)
+	{
+		this.furnitureid = furnitureid;
+	}
+
 	public int getAssessment()
 	{
 		return assessment;
@@ -33,13 +43,13 @@ public class Furniture_CommentDTO
 	{
 		this.userid = userid;
 	}
-	public String getComment()
+	public String getComments()
 	{
-		return comment;
+		return comments;
 	}
-	public void setComment(String comment)
+	public void setComments(String comment)
 	{
-		this.comment = comment;
+		this.comments = comment;
 	}
 	public Date getWritedate()
 	{
@@ -54,9 +64,12 @@ public class Furniture_CommentDTO
 	@Override
 	public String toString()
 	{
-		return "Furniture_CommentDTO [id=" + id + ", assessment=" + assessment + ", userid=" + userid + ", comment="
-				+ comment + ", writedate=" + writedate + "]";
+		return "Furniture_CommentDTO [id=" + id + ", assessment=" + assessment + ", furnitureid=" + furnitureid
+				+ ", userid=" + userid + ", comments=" + comments + ", writedate=" + writedate + "]";
 	}
+	
+	
+	
 	
 	
 	

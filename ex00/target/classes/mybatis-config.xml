@@ -8,6 +8,7 @@
 	<typeAliases>
 		<typeAlias alias="LoginDTO" type="org.zerock.member.dto.LoginDTO" />
 		<typeAlias alias="FurnitureDTO"	type="org.zerock.furniture.dto.FurnitureDTO" />
+		<typeAlias alias="Furniture_CommentDTO"	type="org.zerock.furniture.dto.Furniture_CommentDTO" />
 		<typeAlias alias="boardDTO" type="org.zerock.agentboard.dto.AgentDTO"/>
 		<package name="org.zerock.agentboard.dto"/>
 	</typeAliases>
