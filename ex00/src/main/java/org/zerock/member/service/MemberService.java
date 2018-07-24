@@ -113,4 +113,9 @@ public class MemberService {
 	public List<LoginDTO> list(Criteria cri) {
 		return dao.list(cri);
 	}
+	
+	//뷰에서 보여줄 dto 정보를 가져오는 메서드
+	public LoginDTO view(String email) {
+		return dao.view(email);
+	}
 }

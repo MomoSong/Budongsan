@@ -6,6 +6,35 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원 리스트</title>
+
+
+<style type="text/css">
+.data:hover {
+	background: #eee; cursor: pointer;
+}
+</style>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		// 새로고침 버튼
+		$("#reloadBtn").click(function(){
+			location.reload();
+		});
+		
+		// 게시글에 대한 tr 이벤트 처리
+		$(".data").click(function(){
+			var email = $(this).find("td:nth-child(2)").text();
+			location = "view.do?email="+email // 글번호 전달
+					+"&page=${cri.page}" // 페이지 전달한다.
+					+"&perPageNum=${cri.perPageNum}"
+					+"&searchType=${cri.searchType}"
+					+"&keyword=${cri.keyword}"
+					; // 페이지 당 글수 전달
+		});
+		
+	});
+</script>
+
 </head>
 <body>
 

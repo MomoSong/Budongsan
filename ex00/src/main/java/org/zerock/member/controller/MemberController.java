@@ -109,6 +109,13 @@ public class MemberController {
 		model.addAttribute("list", service.list(cri)); //리스트를 호출해서 model에 담아준다.
 		return "member/list";
 	}
+	
+	//뷰jsp로 안내하는 뷰 메서드
+	@RequestMapping(value = "view.do", method = RequestMethod.GET)
+	public String view(Model model, String email) {
+		model.addAttribute("dto", service.view(email)); //dto를 호출해서 model에 담아준다.
+		return "member/view";
+	}
 
 	// Ajax처리를 위한 컨트롤러 함수. 이메일 중복확인시 사용한다.
 	@RequestMapping(value = "/", method = RequestMethod.POST)

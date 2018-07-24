@@ -109,4 +109,9 @@ public class MemberDao {
 	public List<LoginDTO> list(Criteria cri) {
 		return sqlSession.selectList(namespace + "list", cri);
 	}
+
+	//view에서 보여줄 dto를 
+	public LoginDTO view(String email) {
+		return sqlSession.selectOne(namespace + "view", email);
+	}
 }
