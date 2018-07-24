@@ -180,6 +180,21 @@ $(document).ready(function () {
 			$("#joinForm").submit();
 		}
 	});
+	
+	$("input:radio[name=user_type]").change(function(){
+// 		alert("Hey!");
+		var test = $(":input:radio[name=user_type]:checked").val();
+// 		alert(test);
+		if(test == "seller"){
+			$("#user_type").css("visibility","visible");
+			$("#businessName").val("");
+		}else{
+			$("#user_type").css("visibility","hidden");
+			$("#businessName").val("일반회원");
+		}
+	});
+	
+
   
 });
 </script>
@@ -191,6 +206,13 @@ $(document).ready(function () {
   <h2>회원가입</h2>
   
 <!--   <button id="test" type="button">디버깅용</button> -->
+  
+  	<div class="container" id ="commentdiv" >
+		<div id="#user_type_form">
+	    <label><input type="radio" class="radio" name="user_type" value="normal" checked />일반회원</label>
+	    <label><input type="radio" class="radio" name="user_type" value="seller" />판매자</label>
+		</div>
+	</div>
   
   <form method="post" id="joinForm">
     <div class="form-group">
@@ -213,6 +235,11 @@ $(document).ready(function () {
       <label for="name">이름:</label><br/>
       <input type="text" class="form-control col-sm-4" id="name" placeholder="이름 입력"
        name="name">
+    </div><br/>
+    <div class="form-group" id="user_type" style="visibility: hidden;">
+      <label for="name">사업자명:</label><br/>
+      <input type="text" class="form-control col-sm-4" id="businessName" placeholder="이름 입력"
+       name="businessName" value="일반회원">
     </div><br/>
     <div class="form-group">
       <label for="hp">휴대폰 번호:</label><br/>

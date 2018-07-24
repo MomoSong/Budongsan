@@ -11,8 +11,8 @@
 
 <!-- 회원가입 쿼리  -->
 <insert id="join" >
-	INSERT INTO b_member(email, pw, name, hp, addr, age, money)
-	VALUES(#{email}, #{pw}, #{name}, #{hp}, #{addr}, #{age}, 0)
+	INSERT INTO b_member(email, pw, name, hp, addr, age, money, seller_name)
+	VALUES(#{email}, #{pw}, #{name}, #{hp}, #{addr}, #{age}, 0, #{sellerName})
 </insert>
 
 <!-- 이메일 중복 확인 쿼리. 정보가 없으면 Null을 반환  -->

@@ -37,7 +37,6 @@ public class MemberController {
 		//세션에 담긴 login 네임으로 dto를 얻어온다.
 		LoginDTO dto = (LoginDTO)session.getAttribute("login");
 		//로그인 상태를 0으로 만들어 로그아웃 해주기 위해서 email을 전달한다.
-		System.out.println("로그아웃 : " + dto.getEmail());
 		service.logout(dto.getEmail());
 		//DB의 로그인 상태를 0으로 만들어준다.
 		service.setLoginFalse(dto.getEmail());

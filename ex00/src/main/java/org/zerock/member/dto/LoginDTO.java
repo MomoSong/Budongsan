@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class LoginDTO {
 
-	String email, pw, name, hp, addr;
+	String email, pw, name, hp, addr, sellerName;
 	int age, money, grade;
 	boolean login;
 	Date lastLog, joinDate;
@@ -16,6 +16,12 @@ public class LoginDTO {
 	
 	
 	
+	public String getSellerName() {
+		return sellerName;
+	}
+	public void setSellerName(String sellerName) {
+		this.sellerName = sellerName;
+	}
 	public Date getJoinDate() {
 		return joinDate;
 	}
@@ -118,11 +124,13 @@ public class LoginDTO {
 	}
 	@Override
 	public String toString() {
-		return "LoginDTO [email=" + email + ", pw=" + pw + ", name=" + name + ", hp=" + hp + ", addr=" + addr + ", age="
-				+ age + ", money=" + money + ", grade=" + grade + ", login=" + login + ", lastLog=" + lastLog
-				+ ", joinDate=" + joinDate + ", photo=" + photo + ", user_authCode=" + user_authCode
-				+ ", user_authStatus=" + user_authStatus + "]";
+		return "LoginDTO [email=" + email + ", pw=" + pw + ", name=" + name + ", hp=" + hp + ", addr=" + addr
+				+ ", sellerName=" + sellerName + ", age=" + age + ", money=" + money + ", grade=" + grade + ", login="
+				+ login + ", lastLog=" + lastLog + ", joinDate=" + joinDate + ", photo=" + photo + ", user_authCode="
+				+ user_authCode + ", user_authStatus=" + user_authStatus + "]";
 	}
+	
+	
 	
 	
 }
