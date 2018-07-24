@@ -17,15 +17,18 @@ import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.furniture.dto.FurnitureDTO;
+import org.zerock.furniture.dto.Furniture_CommentDTO;
 import org.zerock.furniture.dto.Criteria;
 import org.zerock.furniture.service.FurnitureService;
 import org.zerock.furniture.util.UploadFileUtil;
+import org.zerock.member.dto.LoginDTO;
 
 /*
  * 자동생성이 되게 하려면 
@@ -51,12 +54,11 @@ public class FurnitureController
 		
 		 String root_path = session.getServletContext().getRealPath("/resources/saveImage"); 
 	      System.out.println("root_path : " + root_path);
-	      String attach_path = "resources";
-	      
-	      
+	         
 		// System.out.println(cri);
 		model.addAttribute("list", service.list(cri,root_path));
 		// jsp에서 하단부분 페이지 표시할때 cri 객체가 필요하다. model에 담아서 보낸다.
+		
 		model.addAttribute("cri", cri);
 		
 		// prefix + return String + suffix
@@ -71,8 +73,10 @@ public class FurnitureController
 	{
 		System.out.println(getClass().getSimpleName() + ".view()");
 		model.addAttribute("dto", service.view(id, true));
-		// prefix + return String + suffix
-		// /WEB-INF/views/board/view.jsp
+		//List<Furniture_CommentDTO> list = service.commentlist(id);
+		//System.out.println(list);
+		
+		model.addAttribute("commentlist",service.commentlist(id));
 		return "furniture/view";
 	}
 
@@ -171,4 +175,19 @@ public class FurnitureController
 		// /WEB-INF/views/board/list.jsp
 		return "redirect:list.do";
 	}
+	
+	
+	@RequestMapping(value = "/furniture/view.do",  method = RequestMethod.POST)
+	public String View (Furniture_CommentDTO tempDTO, HttpSession session )
+	{
+		LoginDTO dto = (LoginDTO) session.getAttribute("login");
+		tempDTO.setUserid( dto.getEmail());
+		tempDTO.setFurnitureid(tempDTO.getId());
+		System.out.println(getClass().getSimpleName() + ".View():POST");
+		System.out.println(tempDTO);
+		service.insertComment(tempDTO);	
+		return "redirect:list.do";
+	}
+	
+	
 }
