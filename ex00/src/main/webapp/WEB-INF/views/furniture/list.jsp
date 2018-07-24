@@ -61,6 +61,8 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 		${(msg == "writeOK")?"alert('글등록이 완료되었습니다.');":""}
 		// 글삭제 후 경고
 		${msg == "deleteOK"?"alert('글삭제가 완료되었습니다.');":""}
+		
+		${msg == "buyOK"?"alert('상품 결제가 완료되었습니다.');":""}
 	});
 </script>
 </head>
@@ -163,7 +165,9 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 	    	</tr>
 	    	<tr>
 	    		<td colspan="5">
+	    		<c:if test="${!empty sessionScope.login.email}">
 	    			<button id="writeBtn">글쓰기</button>
+	    			</c:if>
 	    			<button id="reloadBtn">새로고침</button>
 	    		</td>
 	    	</tr>

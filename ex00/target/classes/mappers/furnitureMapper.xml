@@ -58,9 +58,9 @@
 	
 	<!-- 게시판 글쓰기 : insert -->
 	<insert id="insert">
-		insert into furniturelist(id, picture, title, makecp, content, model_id, price, UUID, counts )
+		insert into furniturelist(id, picture, title, makecp, content, model_id, price, UUID, counts,cpn)
 		values(FurnitureID.nextval, #{picture,jdbcType=LONGVARBINARY} ,#{title},
-		#{makecp} , #{content}, #{model_id}, #{price}, #{UUID}, #{counts})
+		#{makecp} , #{content}, #{model_id}, #{price}, #{UUID}, #{counts} #{cpn})
 	</insert>
 	
 	<!-- 게시판 글수정 처리 : update -->

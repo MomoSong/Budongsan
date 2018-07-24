@@ -103,23 +103,27 @@ public class FurnitureController
 		
 		System.out.println(getClass().getSimpleName() + ".write():POST");
 		String Path = session.getServletContext().getRealPath("/resources/saveImage"); 
+	
 		
 		List<MultipartFile> files = multipartHttpServletRequest.getFiles("files");
 		
 		boardDTO.setUUID( UUID.randomUUID().toString());
 		boardDTO.setPicture(file.getBytes());
 		
-		 service.insert(boardDTO); 
+		LoginDTO dto = (LoginDTO) session.getAttribute("login");
+		boardDTO.setCpn(dto.getEmail());
+		
+		service.insert(boardDTO); 
 			 
 		int id = service.getTitleID(boardDTO);
 		 
-		  boardDTO.setId(id);
+		boardDTO.setId(id);
 	 
 		  // 리스트 이미지 저장
-		  UploadFileUtil.saveImg(boardDTO, Path);
+		UploadFileUtil.saveImg(boardDTO, Path);
 		  
 		  // 뷰 이미지 저장
-		  UploadFileUtil.saveViewImg(files, ""+id, Path);
+		UploadFileUtil.saveViewImg(files, ""+id, Path);
 
 		// 딱 한번만 적용되고 다음에는 없어지는 속성 저장
 		rttr.addFlashAttribute("msg", "writeOK");
@@ -186,5 +190,14 @@ public class FurnitureController
 		return "redirect:list.do";
 	}
 	
+	@RequestMapping(value = "/furniture/buy.do", method = RequestMethod.GET)
+	public String buy (int id, RedirectAttributes rttr)
+	{
+		System.out.println(getClass().getSimpleName() + ".buy()");
+		
+		
+		rttr.addFlashAttribute("msg", "buyOK");
+		return "redirect:list.do";
+	}
 	
 }
