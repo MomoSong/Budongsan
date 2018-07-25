@@ -73,6 +73,9 @@ public class MemberController {
 				// 메일 인증을 안내하는 페이지로 안내한다.
 				return "redirect:/member/authError.do";
 			}
+		}else {
+			session.setAttribute("failLogin", "비밀번호가 안맞습니다.");
+			return "member/loginForm";
 		}
 		return "redirect:/";
 	}
