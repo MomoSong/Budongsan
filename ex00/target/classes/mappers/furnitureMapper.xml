@@ -36,7 +36,9 @@
 	</select>
 	
 	<select id="commentlist" resultType="Furniture_CommentDTO">
-	select userid, writedate, comments from furniture_comments where furnitureid = #{id}
+	select userid, writedate, comments 
+	from furniture_comments 
+	where furnitureid = #{id} and comments is not null
 	order by no desc
 	</select>
 	
@@ -124,12 +126,28 @@
 		</if>
 	</sql>
 	
-	<insert id="insertComment">
-	insert into furniture_comments(no, assessment, userid, comments, writedate,furnitureid )
-		values(furniture_comment_seq.nextval, #{assessment} ,#{userid},
-		#{comments} ,sysdate, #{furnitureid})
+<!-- 	<insert id="insertComment"> -->
+<!-- 	insert into furniture_comments(no, assessment, userid, comments, writedate,furnitureid ) -->
+<!-- 		values(furniture_comment_seq.nextval, #{assessment} ,#{userid}, -->
+<!-- 		#{comments} ,sysdate, #{furnitureid}) -->
+<!-- 	</insert> -->
+	
+	<update id="insertComment">
+	update furniture_comments 
+	set comments = #{comments}, writedate = sysdate
+	where userid = #{userid} and furnitureid = #{furnitureid}
+	</update>
+	
+	<insert id="BuyProcess">
+	insert into furniture_comments(no,userid, furnitureid,buys)
+		values(furniture_comment_seq.nextval, #{userid}, #{furnitureid},1)
 	</insert>
 	
-	
+	<update id="BuyProcess2">
+	update B_MEMBER 
+		set  MONEY = MONEY -(select price from FURNITURELIST 
+		where id = #{furnitureid})
+		where email = #{userid}
+	</update>
 	
 </mapper>

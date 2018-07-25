@@ -108,7 +108,6 @@ public class FurnitureDTO
 	}
 
 	
-	
 	public String getModel_id()
 	{
 		return model_id;

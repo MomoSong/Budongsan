@@ -82,5 +82,11 @@ public class FurnitureService
 		System.out.println(getClass().getSimpleName() + ".commentlist()");
 		return dao.commentlist(id);
 	}
+	
+	public void BuyProcess (Furniture_CommentDTO boardDTO)
+	{
+		System.out.println(getClass().getSimpleName() + ".BuyProcess()");
+		dao.BuyProcess(boardDTO);
+	}
 
 }

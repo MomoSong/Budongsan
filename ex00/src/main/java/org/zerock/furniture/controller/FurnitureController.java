@@ -191,10 +191,14 @@ public class FurnitureController
 	}
 	
 	@RequestMapping(value = "/furniture/buy.do", method = RequestMethod.GET)
-	public String buy (int id, RedirectAttributes rttr)
+	public String buy (int id, RedirectAttributes rttr, HttpSession session)
 	{
 		System.out.println(getClass().getSimpleName() + ".buy()");
-		
+		Furniture_CommentDTO boardDTO  = new Furniture_CommentDTO();
+		boardDTO.setFurnitureid(id);
+		LoginDTO dto = (LoginDTO) session.getAttribute("login");
+		boardDTO.setUserid(dto.getEmail());
+		service.BuyProcess(boardDTO);
 		
 		rttr.addFlashAttribute("msg", "buyOK");
 		return "redirect:list.do";

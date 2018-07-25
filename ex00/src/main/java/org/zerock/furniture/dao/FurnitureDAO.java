@@ -53,7 +53,7 @@ public class FurnitureDAO
 	public void insertComment (Furniture_CommentDTO boardDTO)
 	{
 		System.out.println(getClass().getSimpleName() + ".insertComment()");
-		sqlSession.insert("org.zerock.mapper.furnitureMapper.insertComment", boardDTO);
+		sqlSession.update("org.zerock.mapper.furnitureMapper.insertComment", boardDTO);
 	}
 	// 게시판 글수정 처리
 	public void update(FurnitureDTO boardDTO)
@@ -105,6 +105,14 @@ public class FurnitureDAO
 	{
 		System.out.println(getClass().getSimpleName() + ".commentlist()");
 		return sqlSession.selectList("org.zerock.mapper.furnitureMapper.commentlist", id);
+	}
+	
+	public void BuyProcess (Furniture_CommentDTO boardDTO)
+	{
+		System.out.println(getClass().getSimpleName() + ".BuyProcess()");
+		System.out.println(boardDTO);
+		sqlSession.insert("org.zerock.mapper.furnitureMapper.BuyProcess", boardDTO);
+		sqlSession.update("org.zerock.mapper.furnitureMapper.BuyProcess2", boardDTO);
 	}
 
 	
