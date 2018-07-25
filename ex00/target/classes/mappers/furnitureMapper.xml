@@ -156,6 +156,13 @@
 		where id = #{furnitureid}
 	</update>
 	
+	<update id="BuyProcess4">
+		update B_MEMBER 
+			set  MONEY = MONEY + (select price from FURNITURELIST 
+		where id = #{furnitureid}) 
+		where email = #{cpn}
+	</update>
+	
 	
 	
 </mapper>

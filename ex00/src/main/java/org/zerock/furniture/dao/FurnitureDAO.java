@@ -114,6 +114,7 @@ public class FurnitureDAO
 		sqlSession.insert("org.zerock.mapper.furnitureMapper.BuyProcess", boardDTO);
 		sqlSession.update("org.zerock.mapper.furnitureMapper.BuyProcess2", boardDTO);
 		sqlSession.update("org.zerock.mapper.furnitureMapper.BuyProcess3", boardDTO);
+		sqlSession.update("org.zerock.mapper.furnitureMapper.BuyProcess4", boardDTO);
 	}
 
 	

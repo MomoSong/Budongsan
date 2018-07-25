@@ -115,8 +115,6 @@ public class FurnitureController
 		
 		service.insert(boardDTO); 
 			 
-		
-		
 		int id = service.getTitleID(boardDTO); 
 		boardDTO.setId(id);
 		  // 리스트 이미지 저장
@@ -190,11 +188,13 @@ public class FurnitureController
 	}
 	
 	@RequestMapping(value = "/furniture/buy.do", method = RequestMethod.GET)
-	public String buy (int id, RedirectAttributes rttr, HttpSession session)
+	public String buy (int id, String cpn, RedirectAttributes rttr, HttpSession session)
 	{
 		System.out.println(getClass().getSimpleName() + ".buy()");
+		System.out.println(cpn);
 		Furniture_CommentDTO boardDTO  = new Furniture_CommentDTO();
 		boardDTO.setFurnitureid(id);
+		boardDTO.setCpn(cpn);
 		LoginDTO dto = (LoginDTO) session.getAttribute("login");
 		boardDTO.setUserid(dto.getEmail());
 		service.BuyProcess(boardDTO);

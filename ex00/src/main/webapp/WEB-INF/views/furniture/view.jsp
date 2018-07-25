@@ -77,7 +77,7 @@
 		
 		$("#buyBtn").click(function() {
 			if (confirm("정말 물건을 사시겠습니까?"))
-				location = "buy.do?id=${dto.id}";
+				location = "buy.do?id=${dto.id}&cpn=${dto.cpn}";
 		});
 
 		$

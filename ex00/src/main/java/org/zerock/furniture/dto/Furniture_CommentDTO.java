@@ -5,8 +5,7 @@ import java.sql.Date;
 public class Furniture_CommentDTO
 {
 	private int id,assessment,furnitureid;
-	
-	private String userid, comments;
+	private String userid, comments, cpn;
 	private Date writedate;
 	
 	
@@ -60,19 +59,25 @@ public class Furniture_CommentDTO
 		this.writedate = writedate;
 	}
 	
+
+	public String getCpn()
+	{
+		return cpn;
+	}
+	public void setCpn(String cpn)
+	{
+		this.cpn = cpn;
+	}
+	
+	
 	
 	@Override
 	public String toString()
 	{
 		return "Furniture_CommentDTO [id=" + id + ", assessment=" + assessment + ", furnitureid=" + furnitureid
-				+ ", userid=" + userid + ", comments=" + comments + ", writedate=" + writedate + "]";
+				+ ", userid=" + userid + ", comments=" + comments + ", cpn=" + cpn + ", writedate=" + writedate + "]";
 	}
-	
-	
-	
-	
-	
-	
+
 	
 	
 }
