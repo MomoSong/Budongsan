@@ -74,7 +74,7 @@ public class MemberController {
 				return "redirect:/member/authError.do";
 			}
 		}else {
-			session.setAttribute("failLogin", "비밀번호가 안맞습니다.");
+			rttr.addFlashAttribute("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
 			return "member/loginForm";
 		}
 		return "redirect:/";
@@ -98,7 +98,13 @@ public class MemberController {
 	public String join(Model model, LoginDTO dto, RedirectAttributes rttr, HttpServletRequest request,
 			HttpSession session) throws Exception {
 		// service.join(dto);
-		
+		if(dto.getSeller_name().equals("일반회원")) {
+			System.out.println("로그 일반회원 true일때");
+			dto.setGrade(1);
+		}else {
+			System.out.println("로그 일반회원 아닐때 else");
+			dto.setGrade(5);
+		}
 		dto.setHp(checkHpFormat(dto.getHp())); // 핸드폰 번호에서 문자를 빼고 숫자만으로 통일시켜준다.
 		dto.setPw(this.bcryptPasswordEncoder.encode(dto.getPw())); // 비밀번호를 암호화해서 저장한다.
 		service.create(dto); // 서비스로 dto를 보내서 회원가입을 시키고, 인증키 생성 DB에 저장, 메일 발송을 진행한다.
@@ -118,6 +124,27 @@ public class MemberController {
 	public String view(Model model, String email) {
 		model.addAttribute("dto", service.view(email)); //dto를 호출해서 model에 담아준다.
 		return "member/view";
+	}
+	
+	//updateForm으로 안내하는 업데이트 메서드
+	@RequestMapping(value = "update.do", method = RequestMethod.GET)
+	public String update(Model model, String email) {
+		model.addAttribute("dto", service.view(email)); //dto를 호출해서 model에 담아준다.(View메서드 재활용)
+		return "member/updateForm";
+	}
+	
+	//update 메서드, 회원정보 수정
+	@RequestMapping(value = "update.do", method = RequestMethod.POST)
+	public String update(Model model, LoginDTO dto) {
+		service.update(dto); //서비스에서 업데이트 메서드를 호출한다
+		return "redirect:/member/list.do";
+	}
+	
+	//회원 탈퇴 메서드
+	@RequestMapping(value = "secession.do", method = RequestMethod.GET)
+	public String secession(Model model, String email) {
+		service.secession(email);
+		return "redirect:/member/list.do";
 	}
 
 	// Ajax처리를 위한 컨트롤러 함수. 이메일 중복확인시 사용한다.

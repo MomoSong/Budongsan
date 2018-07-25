@@ -57,8 +57,8 @@ public class MemberService {
 	//트랜잭션을 이용해 병행제어를 한다. 병행제어를 하는 이유는 연쇄적인 복귀나 모순성 갱신내용 손실을 막기 위함이다.
 	@Transactional
 	public void create(LoginDTO dto) throws Exception {
-	if(dto.getSellerName() == null) {
-		dto.setSellerName("일반회원");
+	if(dto.getSeller_name() == null) {
+		dto.setSeller_name("일반회원");
 	}
 	dao.join(dto); // 회원가입 DAO로 dto를 보내서 처리한다.
 
@@ -120,5 +120,15 @@ public class MemberService {
 	//뷰에서 보여줄 dto 정보를 가져오는 메서드
 	public LoginDTO view(String email) {
 		return dao.view(email);
+	}
+	
+	//업데이트 메서드
+	public void update(LoginDTO dto) {
+		dao.update(dto);
+	}
+
+	//회원 탈퇴 메서드
+	public void secession(String email) {
+		dao.secession(email);
 	}
 }

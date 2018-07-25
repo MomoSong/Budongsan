@@ -44,6 +44,7 @@
 	      <tr>
 	        <th>이름</th>
 	        <th>아이디</th>
+	        <th>사업자명</th>
 	        <th>나이</th>
 	        <th>주소</th>
 	        <th>회원등급</th>
@@ -56,6 +57,7 @@
 	      <tr class="data">
 	        <td>${dto.name }</td>
 	        <td>${dto.email }</td>
+	        <td>${dto.seller_name }</td>
 	        <td>${dto.age }</td>
 	        <td>${dto.addr }</td>
 	        <td>${dto.grade }</td>

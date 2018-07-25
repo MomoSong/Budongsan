@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class LoginDTO {
 
-	String email, pw, name, hp, addr, sellerName;
+	String email, pw, name, hp, addr, seller_name;
 	int age, money, grade;
 	boolean login;
 	Date lastLog, joinDate;
@@ -16,11 +16,12 @@ public class LoginDTO {
 	
 	
 	
-	public String getSellerName() {
-		return sellerName;
+
+	public String getSeller_name() {
+		return seller_name;
 	}
-	public void setSellerName(String sellerName) {
-		this.sellerName = sellerName;
+	public void setSeller_name(String seller_name) {
+		this.seller_name = seller_name;
 	}
 	public Date getJoinDate() {
 		return joinDate;
@@ -99,16 +100,7 @@ public class LoginDTO {
 		return grade;
 	}
 	public void setGrade(int grade) {
-		switch(grade) {
-			case 1: 
-				this.grade = grade;
-				break;
-			case 9:
-				this.grade = grade;
-				break;
-			default:
-				this.grade = 0;
-		}
+		this.grade = grade;
 	}
 	public Date getLastLog() {
 		return lastLog;
@@ -125,7 +117,7 @@ public class LoginDTO {
 	@Override
 	public String toString() {
 		return "LoginDTO [email=" + email + ", pw=" + pw + ", name=" + name + ", hp=" + hp + ", addr=" + addr
-				+ ", sellerName=" + sellerName + ", age=" + age + ", money=" + money + ", grade=" + grade + ", login="
+				+ ", sellerName=" + seller_name + ", age=" + age + ", money=" + money + ", grade=" + grade + ", login="
 				+ login + ", lastLog=" + lastLog + ", joinDate=" + joinDate + ", photo=" + photo + ", user_authCode="
 				+ user_authCode + ", user_authStatus=" + user_authStatus + "]";
 	}

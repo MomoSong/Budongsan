@@ -14,6 +14,8 @@ $(document).ready(function () {
 	var validHp = false;
 	var validAll = false;
 	var checkEmail = false;
+	
+// 	$("#seller_name").val("일반회원");
 
 	//취소 버튼을 누를시 메인 페이지로
 	$("#cancel").click(function(){
@@ -181,16 +183,16 @@ $(document).ready(function () {
 		}
 	});
 	
-	$("input:radio[name=user_type]").change(function(){
+	$("input:radio[name=grade]").change(function(){
 // 		alert("Hey!");
-		var test = $(":input:radio[name=user_type]:checked").val();
+		var test = $(":input:radio[name=grade]:checked").val();
 // 		alert(test);
-		if(test == "seller"){
+		if(test == "5"){
 			$("#user_type").css("visibility","visible");
-			$("#businessName").val("");
+			$("#seller_name").val("");
 		}else{
 			$("#user_type").css("visibility","hidden");
-			$("#businessName").val("일반회원");
+			$("#seller_name").val("일반회원");
 		}
 	});
 	
@@ -209,8 +211,8 @@ $(document).ready(function () {
   
   	<div class="container" id ="commentdiv" >
 		<div id="#user_type_form">
-	    <label><input type="radio" class="radio" name="user_type" value="normal" checked />일반회원</label>
-	    <label><input type="radio" class="radio" name="user_type" value="seller" />판매자</label>
+	    <label><input type="radio" class="radio" name="grade" value="1" checked />일반회원</label>
+	    <label><input type="radio" class="radio" name="grade" value="5" />판매자</label>
 		</div>
 	</div>
   
@@ -237,9 +239,9 @@ $(document).ready(function () {
        name="name">
     </div><br/>
     <div class="form-group" id="user_type" style="visibility: hidden;">
-      <label for="name">사업자명:</label><br/>
-      <input type="text" class="form-control col-sm-4" id="businessName" placeholder="이름 입력"
-       name="businessName" value="일반회원">
+      <label for="seller_name">사업자명:</label><br/>
+      <input type="text" class="form-control col-sm-4" id="seller_name" 
+       name="seller_name" value="일반회원">
     </div><br/>
     <div class="form-group">
       <label for="hp">휴대폰 번호:</label><br/>

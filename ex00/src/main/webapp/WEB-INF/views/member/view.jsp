@@ -19,6 +19,12 @@ $(document).ready(function(){
 		// form.submit() 넘긴다.
 		$("#dataForm").submit();
 	});
+	// 회원 탈퇴버튼
+	$("#deleteBtn").click(function(){
+		$("#dataForm").attr("action","secession.do");
+		// form.submit() 넘긴다.
+		$("#dataForm").submit();
+	});
 
 });
 
@@ -28,7 +34,7 @@ $(document).ready(function(){
 </head>
 <body>
 <form id="dataForm">
-	<input name="no" value="${param.no }" type="hidden" id="no">
+	<input name="email" value="${param.email }" type="hidden" id="email">
 	<input name="page" value="${param.page }" type="hidden">
 	<input name="perPageNum" value="${param.perPageNum }" type="hidden">
 	<input name="searchType" value="${param.searchType }" type="hidden">
@@ -48,6 +54,10 @@ $(document).ready(function(){
 	      <tr>
 	      	<th>아이디</th>
 	        <td>${dto.email }</td>
+	      </tr>
+	      <tr>
+	      	<th>사업자명</th>
+	        <td>${dto.seller_name }</td>
 	      </tr>
 	      <tr>
 	      	<th>나이</th>

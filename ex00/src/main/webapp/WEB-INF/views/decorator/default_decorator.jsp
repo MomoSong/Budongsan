@@ -83,6 +83,15 @@ pageContext.setAttribute("absUri", request.getContextPath());
             		  <a class="nav-link" href="/member/logout.do">로그아웃</a>
             		</li>
             	</c:when>
+
+            	<c:when test="<%= dto.getLogin()==true && dto.getGrade()==5 %>">
+            		<li class="nav-item">
+            		  <a class="nav-link" href="/member/profile.do"><%=dto.getName() %>님</a>
+            		</li>
+            		<li class="nav-item">
+            		  <a class="nav-link" href="/member/logout.do">로그아웃</a>
+            		</li>
+            	</c:when>
             </c:choose>
             </c:if>
             

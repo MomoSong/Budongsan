@@ -12,7 +12,8 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-
+	
+	
 	$("#loginBtn").click(function(){
 		document.getElementById("loginForm").submit();
 	});		
@@ -27,7 +28,10 @@ $(document).ready(function(){
 		}
 	});
 	
+	
+	
 });
+
 
 </script>
 

@@ -114,4 +114,14 @@ public class MemberDao {
 	public LoginDTO view(String email) {
 		return sqlSession.selectOne(namespace + "view", email);
 	}
+
+	//dto를 이용해 DB에 업데이트를 실시한다.
+	public void update(LoginDTO dto) {
+		sqlSession.update(namespace + "update", dto);
+	}
+
+	//회원탈퇴메서드 DB로 email을 보낸다.
+	public void secession(String email) {
+		sqlSession.update(namespace + "secession", email);
+	}
 }
