@@ -113,6 +113,7 @@ public class FurnitureDAO
 		System.out.println(boardDTO);
 		sqlSession.insert("org.zerock.mapper.furnitureMapper.BuyProcess", boardDTO);
 		sqlSession.update("org.zerock.mapper.furnitureMapper.BuyProcess2", boardDTO);
+		sqlSession.update("org.zerock.mapper.furnitureMapper.BuyProcess3", boardDTO);
 	}
 
 	

@@ -46,7 +46,7 @@
 	<!-- 게시판 글보기 : select =>view, update form -->
 <!-- 	<select id="view" resultType="org.zerock.board.dto.BoardDTO"> -->
 	<select id="view" resultType="FurnitureDTO">
-		select id, title, writeDate, hit,makecp,content,model_id,price,counts
+		select id, title, writeDate, hit,makecp,content,model_id,price,counts,cpn
 		from furniturelist
 		where id = #{id}
 		
@@ -62,7 +62,7 @@
 	<insert id="insert">
 		insert into furniturelist(id, picture, title, makecp, content, model_id, price, UUID, counts,cpn)
 		values(FurnitureID.nextval, #{picture,jdbcType=LONGVARBINARY} ,#{title},
-		#{makecp} , #{content}, #{model_id}, #{price}, #{UUID}, #{counts} #{cpn})
+		#{makecp} , #{content}, #{model_id}, #{price}, #{UUID}, #{counts} ,#{cpn})
 	</insert>
 	
 	<!-- 게시판 글수정 처리 : update -->
@@ -146,8 +146,16 @@
 	<update id="BuyProcess2">
 	update B_MEMBER 
 		set  MONEY = MONEY -(select price from FURNITURELIST 
-		where id = #{furnitureid})
+		where id = #{furnitureid}) 
 		where email = #{userid}
 	</update>
+	
+	<update id="BuyProcess3">
+	update FURNITURELIST 
+		set  COUNTS = COUNTS - 1
+		where id = #{furnitureid}
+	</update>
+	
+	
 	
 </mapper>

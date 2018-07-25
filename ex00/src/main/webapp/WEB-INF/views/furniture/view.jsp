@@ -195,15 +195,17 @@
 			</div>
 
 			
-			<button id="updateBtn" class="btn btn-success">수정</button>
-			<button id="buyBtn" class="btn btn-success">사기</button>
-			<button id="deleteBtn" class="btn btn-warning">삭제</button>
-			<button id="listBtn" class="btn btn-danger">뒤로가기</button>
 			<%-- 		 	<p>"${sessionScope.login.email}"</p> --%>
+			<c:if test="${sessionScope.login.email eq dto.cpn}">
+					<button id="updateBtn" class="btn btn-success">수정</button>
+					<button id="deleteBtn" class="btn btn-warning">삭제</button>
+			</c:if>
 			<c:if test="${!empty sessionScope.login.email}">
+				<button id="buyBtn" class="btn btn-success">사기</button>
 				<button id="commentBtn" class="btn btn-success" onclick="add_item()">댓글
 					작성</button>
 			</c:if>
+			<button id="listBtn" class="btn btn-danger">뒤로가기</button>
 		</div>
 	</div>
 	</br>

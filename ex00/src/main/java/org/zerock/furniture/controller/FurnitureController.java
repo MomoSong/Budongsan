@@ -115,13 +115,12 @@ public class FurnitureController
 		
 		service.insert(boardDTO); 
 			 
-		int id = service.getTitleID(boardDTO);
-		 
+		
+		
+		int id = service.getTitleID(boardDTO); 
 		boardDTO.setId(id);
-	 
 		  // 리스트 이미지 저장
 		UploadFileUtil.saveImg(boardDTO, Path);
-		  
 		  // 뷰 이미지 저장
 		UploadFileUtil.saveViewImg(files, ""+id, Path);
 
@@ -165,7 +164,7 @@ public class FurnitureController
 		
 		FurnitureDTO boardDTO = new FurnitureDTO();
 		boardDTO.setId(id);
-		String name = service.getIdTitle(boardDTO);
+		//String name = service.getIdTitle(boardDTO);
 		UploadFileUtil.ImgDelect(Path,""+id+"."+"jpg");
 		UploadFileUtil.ImgViewDelect(Path,""+id);
 		
