@@ -119,8 +119,8 @@ public class MemberController {
 	
 	//뷰jsp로 안내하는 뷰 메서드
 	@RequestMapping(value = "view.do", method = RequestMethod.GET)
-	public String view(Model model, String email) {
-		model.addAttribute("dto", service.view(email)); //dto를 호출해서 model에 담아준다.
+	public String view(HttpSession session, String email) {
+		session.setAttribute("dto", service.view(email));//dto를 호출해서 model에 담아준다.
 		return "member/view";
 	}
 	
@@ -267,19 +267,41 @@ public class MemberController {
 	
 	//메인화면에서 회원 이름을 클릭했을 때 회원 정보를 볼 수 있는 페이지로 이동시키는 함수
 	@RequestMapping(value="/modify.do", method=RequestMethod.GET)
-	public String modify() {
+	public String modify(SessionStatus status) {
 		return "member/modify";
 	}
 	
 	//회원 정보를 수정 페이지에서 데이터를 입력하고 수정 버튼을 눌렀을 때
 	@RequestMapping(value="/modify.do", method=RequestMethod.POST)
-	public String modify(Model model, LoginDTO dto, String email, SessionStatus status) {
+	public String modify(HttpSession session, LoginDTO dto, String email, SessionStatus status) {
 		status.setComplete();
 		dto = service.modify(dto, email);
 		System.out.println(dto);
-		model.addAttribute("login", dto);
+		session.setAttribute("login", dto);
 		return "/member/profile";
 	}
+
+	//비밀번호 변경 페이지로 안내한다.
+	@RequestMapping(value="/pwModify.do", method=RequestMethod.GET)
+	public String pwModify() {
+		return "/member/pwModify";
+	}
+	
+	//비밀번호 변경 페이지에서 비빌번호 변경을 시도했을때
+	@RequestMapping(value="/pwModify.do", method=RequestMethod.POST)
+	public String pwModify(HttpServletRequest request) {
+		String pw = request.getParameter("pw");
+		String newPw = request.getParameter("newPw");
+		String email = request.getParameter("email");
+		if (bcryptPasswordEncoder.matches(pw, service.selectCryptPw(email))) {
+			System.out.println(newPw);
+		}else {
+			
+		}
+		
+		return "/member/profile";
+	}
+		
 	
 	
 

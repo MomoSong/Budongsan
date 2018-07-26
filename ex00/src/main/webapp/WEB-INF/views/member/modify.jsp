@@ -5,6 +5,23 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 정보 수정</title>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$("#pwBtn").click(function(){
+		location = "/member/pwModify.do";
+	});
+	
+	$("#cancelBtn").click(function(){
+		location = "/member/profile.do";
+	});
+	
+});
+
+</script>
+
+
 </head>
 <body>
 
