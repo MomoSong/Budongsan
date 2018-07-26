@@ -98,7 +98,7 @@
 <!-- dto 객체를 받아와 회원정보를 수정하는 쿼리. 개인 회원 정보 수정페이지에서 사용-->
 <update id="modify">
 	UPDATE b_member SET name = #{name}, age = #{age}, addr = #{addr}, 
-	money=#{money} WHERE email = #{email}
+	money= money + #{money} WHERE email = #{email}
 </update>
 
 </mapper>
