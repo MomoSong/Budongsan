@@ -89,6 +89,10 @@
 		</if>
 	</sql>
 	
-	
+<select id="mainPage" resultType="boardDTO">
+	select no, title, type, hit from 
+	(select no, title, type, hit from agentboard order by hit desc) 
+	where ROWNUM <![CDATA[<]]> 4  
+</select>	
 	
 </mapper>

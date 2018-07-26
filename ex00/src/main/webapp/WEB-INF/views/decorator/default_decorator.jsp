@@ -35,6 +35,50 @@ pageContext.setAttribute("absUri", request.getContextPath());
 
   
   <decorator:head></decorator:head>
+  <script type="text/javascript">
+	  $(document).ready(function(){
+		  var idx = 0;
+		  var opposite = false;
+		  
+		  $("#right").click(function(){
+			  var check = idx;
+			  $(".item").removeClass("active");
+			  if(idx > 1){
+				  idx = -1;
+			  }
+			  idx++;
+			  if(check == idx){
+				  opposite = true;
+				  $(this).click();
+			  }else{
+				  opposite = false;
+			  }
+			  $("#"+idx+"").addClass("active");
+			  console.log(idx);
+		  });
+		  
+		  $("#left").click(function(){
+			  var check = idx;
+			  $(".item").removeClass("active");
+			  if(idx < 1){
+				  idx = 3;
+			  }
+			  idx--;
+			  if(check == idx){
+				  opposite = true;
+				  $(this).click();
+			  }else{
+				  opposite = false;
+			  }
+			  $("#"+idx+"").addClass("active");
+			  console.log(idx);
+		  });
+		  
+	  });
+  
+  </script>
+  
+  
   </head>
   <body>
   
@@ -131,25 +175,19 @@ pageContext.setAttribute("absUri", request.getContextPath());
 					
 					    <!-- Wrapper for slides -->
 					    <div class="carousel-inner">
-					      <div class="item active">
-					        <img src="#" alt="Los Angeles" style="width:100%;">
-					      </div>
 					
-					      <div class="item">
-					        <img src="#" alt="Chicago" style="width:100%;">
+						<c:forEach items="${carousel }" varStatus="status"  var="main">
+					      <div id="${status.index }" class="item">
+					        <img src="#" alt="${main.title }" style="width:100%;">
+					        <script type="text/javascript">
+					        
+					        </script>
 					      </div>
-					    
-					      <div class="item">
-					        <img src="#" alt="New york" style="width:100%;">
-					      </div>
+						</c:forEach>
+					
 					    </div>
 					
-					    <!-- Left and right controls -->
-					    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-					      <span class="glyphicon glyphicon-chevron-left"></span>
-					      <span class="sr-only">Previous</span>
-					    </a>
-					    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+					    <a id="right" class="right carousel-control" href="#myCarousel" data-slide="next">
 					      <span class="glyphicon glyphicon-chevron-right"></span>
 					      <span class="sr-only">Next</span>
 					    </a>

@@ -107,4 +107,5 @@ public class AgentController {
 		// /WEB-INF/views/agentboard/list.jsp
 		return "redirect:list.do";
 	}
+
 }

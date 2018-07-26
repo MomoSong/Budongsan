@@ -63,4 +63,10 @@ public class AgentService {
 		dao.insert(boardDTO); // 정상처리
 		System.out.println("게시판 글쓰기 성공");
 	}
+	
+	//메인 페이지에 올라갈 게시물 3개
+	public List<AgentDTO> mainCarousel(){
+		return dao.mainCarousel();
+	}
+	
 }
