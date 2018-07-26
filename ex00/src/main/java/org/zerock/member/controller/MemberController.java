@@ -274,10 +274,10 @@ public class MemberController {
 	//회원 정보를 수정 페이지에서 데이터를 입력하고 수정 버튼을 눌렀을 때
 	@RequestMapping(value="/modify.do", method=RequestMethod.POST)
 	public String modify(HttpSession session, LoginDTO dto, String email, SessionStatus status) {
-		status.setComplete();
-		dto = service.modify(dto, email);
+		status.setComplete(); //세션에 담긴 내용을 지워준다
+		dto = service.modify(dto, email); //DB쪽에 변경을 해주고 다시 dto를 불러온다
 		System.out.println(dto);
-		session.setAttribute("login", dto);
+		session.setAttribute("login", dto); //세션에 dto정보를 담아준다
 		return "/member/profile";
 	}
 
@@ -289,14 +289,18 @@ public class MemberController {
 	
 	//비밀번호 변경 페이지에서 비빌번호 변경을 시도했을때
 	@RequestMapping(value="/pwModify.do", method=RequestMethod.POST)
-	public String pwModify(HttpServletRequest request) {
-		String pw = request.getParameter("pw");
-		String newPw = request.getParameter("newPw");
-		String email = request.getParameter("email");
-		if (bcryptPasswordEncoder.matches(pw, service.selectCryptPw(email))) {
-			System.out.println(newPw);
+	public String pwModify(HttpSession session, HttpServletRequest request, SessionStatus sessionStatus) {
+		String pw = request.getParameter("pw"); //기존의 비밀번호
+		String newPw = request.getParameter("newPw"); //새롭게 변경될 비밀번호
+		String email = request.getParameter("email"); //유저의 이메일 아이디
+		String encryptPw = this.bcryptPasswordEncoder.encode(newPw); //새로운 비밀번호를 암호화 해준다.
+		if (bcryptPasswordEncoder.matches(pw, service.selectCryptPw(email))) { //기존 비밀번호가 맞을때만 비빌번호 변경을 허락해준다.
+			service.setPw(encryptPw, email); //비밀번호 변경
+			sessionStatus.setComplete(); //세션에 담긴 내용을 지워준다
+			session.setAttribute("login", service.login(email)); //다시 세션에 변경된 비밀번호 정보로 dto를 담아준다.
 		}else {
-			
+			System.out.println("비밀번호가 안맞습니다. - 비밀번호 변경 페이지");
+			return "/member/pwModify";
 		}
 		
 		return "/member/profile";
