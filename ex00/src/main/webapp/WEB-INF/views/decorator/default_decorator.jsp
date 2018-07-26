@@ -50,9 +50,6 @@ pageContext.setAttribute("absUri", request.getContextPath());
 			  $("#"+idx+"").addClass("active");
 			  console.log(idx);
 		  });
-		  
-
-		  
 	  });
   
   </script>
