@@ -51,7 +51,7 @@ pageContext.setAttribute("absUri", request.getContextPath());
               <a class="nav-link" href="/agentboard/list.do">매물정보</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">뉴스</a>
+              <a class="nav-link" href="/news/list">뉴스</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/ds/chart.do">매매 거래동향 </a>
