@@ -87,7 +87,7 @@
 <!-- dto 객체를 받아와 회원정보를 수정하는 쿼리. 관리자 페이지에서 사용-->
 <update id="update">
 	UPDATE b_member SET name = #{name}, age = #{age}, addr = #{addr}, 
-	seller_name = #{seller_name}, grade = #{grade}, money=#{money} WHERE email = #{email}
+	seller_name = #{seller_name}, grade = #{grade}, money= money + #{money} WHERE email = #{email}
 </update>
 
 <!-- dto 객체를 받아와 회원정보를 수정하는 쿼리 -->
