@@ -21,7 +21,6 @@ public class MemberDao {
 	
 	//로그인을 시도하면 해쉬맵에 아이디와 비밀번호를 담아서 session으로 보내준다.
 	public LoginDTO login(String email) {
-		System.out.println("로긴함수 DAO 이메일 : " + email);
 		Map<String, String> map = new HashMap<>();
 		map.put("email", email);
 		setLoginTrue(email); //로그인 상태에 1을 넣어주는 쿼리 함수를 실행한다.
@@ -51,7 +50,6 @@ public class MemberDao {
 
 	//dto를 DB에 보내서 회원가입을 한다.
 	public void join(LoginDTO dto) {
-		System.out.println(getClass() + " : " + dto);
 		sqlSession.insert(namespace+"join", dto);
 	}
 	
@@ -62,24 +60,20 @@ public class MemberDao {
 	
 	//유저의 인증키를 업데이트한다. 이메일이 일치하는 유저만 키를 업데이트
 	public void createAuthKey(String user_email, String user_authCode) throws Exception {
-		// TODO Auto-generated method stub
 		LoginDTO dto = new LoginDTO();
 		dto.setUser_authCode(user_authCode);
 		dto.setEmail(user_email);
-
 		sqlSession.selectOne(namespace + "createAuthKey", dto);
 	}
 	
 	
 	//유저의 이메일에 일치하는 DB 레코드를 조회하여 user_authStatus를 1로 업데이트 한다.
 	public void userAuth(String user_email) throws Exception {
-		// TODO Auto-generated method stub
 		sqlSession.update(namespace + "userAuth", user_email);
 	}
 	
 	//유저의 인증상태가 1인지 0인지 조사하기 위해 DB에서 user_authStatus를 조회한다.
 	public String selectUserAuth(String user_email) throws Exception {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace + "selectUserAuth", user_email);
 	}
 
@@ -123,5 +117,12 @@ public class MemberDao {
 	//회원탈퇴메서드 DB로 email을 보낸다.
 	public void secession(String email) {
 		sqlSession.update(namespace + "secession", email);
+	}
+
+	//회원정보 수정 메서드
+	public void modify(LoginDTO dto) {
+		System.out.println("DAO 모디파이");
+		System.out.println(dto);
+		sqlSession.update(namespace + "modify", dto);
 	}
 }

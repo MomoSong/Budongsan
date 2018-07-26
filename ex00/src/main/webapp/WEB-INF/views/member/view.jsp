@@ -21,9 +21,12 @@ $(document).ready(function(){
 	});
 	// 회원 탈퇴버튼
 	$("#deleteBtn").click(function(){
-		$("#dataForm").attr("action","secession.do");
-		// form.submit() 넘긴다.
-		$("#dataForm").submit();
+		var con = confirm("정말로 탈퇴시킵니까?");
+		if(con == true){
+			$("#dataForm").attr("action","secession.do");
+			// form.submit() 넘긴다.
+			$("#dataForm").submit();			
+		}
 	});
 
 });

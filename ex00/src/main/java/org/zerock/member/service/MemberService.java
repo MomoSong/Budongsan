@@ -131,4 +131,11 @@ public class MemberService {
 	public void secession(String email) {
 		dao.secession(email);
 	}
+
+	//회원 정보 수정 메서드
+	public LoginDTO modify(LoginDTO dto, String email) {
+		dto.setEmail(email);
+		dao.modify(dto);
+		return dao.login(email);
+	}
 }

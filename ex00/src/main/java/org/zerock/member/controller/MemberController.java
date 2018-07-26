@@ -5,6 +5,7 @@ import java.util.Random;
 
 import javax.inject.Inject;
 import javax.mail.MessagingException;
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -16,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.member.dto.Criteria;
 import org.zerock.member.dto.LoginDTO;
@@ -55,7 +57,6 @@ public class MemberController {
 	// 로그인 폼에서 작성한 정보로 로그인을 시도할 때
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
 	public String login(HttpSession session, String email, String pw, RedirectAttributes rttr) throws Exception {
-		System.out.println("email and pw:" + email + " , " + pw);
 		//입력한 raw비밀번호와 DB에 들어있는 암호화된 비밀번호가 일치하는 경우 true
 		if (bcryptPasswordEncoder.matches(pw, service.selectCryptPw(email))) {
 			//dto에 개인 정보를 모두 담아 준다
@@ -75,7 +76,7 @@ public class MemberController {
 			}
 		}else {
 			rttr.addFlashAttribute("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
-			return "member/loginForm";
+			return "redirect:/member/login.do";
 		}
 		return "redirect:/";
 	}
@@ -89,7 +90,6 @@ public class MemberController {
 	// 회원가입 주소를 입력하면 회원가입 폼으로 안내한다.
 	@RequestMapping(value = "/join.do", method = RequestMethod.GET)
 	public String join() {
-		System.out.println("member/joinForm");
 		return "member/joinForm";
 	}
 
@@ -99,10 +99,8 @@ public class MemberController {
 			HttpSession session) throws Exception {
 		// service.join(dto);
 		if(dto.getSeller_name().equals("일반회원")) {
-			System.out.println("로그 일반회원 true일때");
 			dto.setGrade(1);
 		}else {
-			System.out.println("로그 일반회원 아닐때 else");
 			dto.setGrade(5);
 		}
 		dto.setHp(checkHpFormat(dto.getHp())); // 핸드폰 번호에서 문자를 빼고 숫자만으로 통일시켜준다.
@@ -142,9 +140,10 @@ public class MemberController {
 	
 	//회원 탈퇴 메서드
 	@RequestMapping(value = "secession.do", method = RequestMethod.GET)
-	public String secession(Model model, String email) {
+	public String secession(HttpSession session, Model model, String email) {
 		service.secession(email);
-		return "redirect:/member/list.do";
+		session.invalidate(); // 세션을 지운다. -> 로그아웃
+		return "redirect:/";
 	}
 
 	// Ajax처리를 위한 컨트롤러 함수. 이메일 중복확인시 사용한다.
@@ -202,7 +201,6 @@ public class MemberController {
 			if(checkedEmail != null) { //이메일이 null이 아니라면 진짜 이메일이 존재하는 경우
 				String pw = randPw(); //랜덤 비밀번호 만들기 함수를 통해 비밀번호를 생성해준다.
 				String newPw = this.bcryptPasswordEncoder.encode(pw); //생성한 비밀번호를 암호화한다
-				System.out.println("암호화 비번 : " + newPw);
 				service.setPw(newPw, checkedEmail); //생성해서 암호화된 비밀번호를 암호화해서 DB에 저장한다.
 				service.sendMail(pw, checkedEmail); //암호화 안된 비밀번호를 메일로 발송해준다
 				model.addAttribute("id", "메일로 임시 비밀번호를 발송해 드렸습니다. 확인해주세요");
@@ -263,8 +261,24 @@ public class MemberController {
 	
 	//메인화면에서 회원 이름을 클릭했을 때 회원 정보를 볼 수 있는 페이지로 이동시키는 함수
 	@RequestMapping(value="/profile.do", method=RequestMethod.POST)
-	public String profile(Model model, LoginDTO dto) {
+	public String viewProfile() {
 		return "member/profile";
+	}
+	
+	//메인화면에서 회원 이름을 클릭했을 때 회원 정보를 볼 수 있는 페이지로 이동시키는 함수
+	@RequestMapping(value="/modify.do", method=RequestMethod.GET)
+	public String modify() {
+		return "member/modify";
+	}
+	
+	//회원 정보를 수정 페이지에서 데이터를 입력하고 수정 버튼을 눌렀을 때
+	@RequestMapping(value="/modify.do", method=RequestMethod.POST)
+	public String modify(Model model, LoginDTO dto, String email, SessionStatus status) {
+		status.setComplete();
+		dto = service.modify(dto, email);
+		System.out.println(dto);
+		model.addAttribute("login", dto);
+		return "/member/profile";
 	}
 	
 	

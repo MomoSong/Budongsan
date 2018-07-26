@@ -12,7 +12,10 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-	
+	var text = "${loginFail}";
+	if(text != ""){
+		$("#text").html(text);
+	}
 	
 	$("#loginBtn").click(function(){
 		document.getElementById("loginForm").submit();
@@ -32,7 +35,6 @@ $(document).ready(function(){
 	
 });
 
-
 </script>
 
 </head>
@@ -49,10 +51,13 @@ $(document).ready(function(){
 	      <label for="pw">비밀번호:</label><br/>
 	      <input type="password" class="form-control" id="pw" placeholder="비밀번호 입력"
 	       name="pw">
-	    </div>
+	    </div><br/>
+	    <p id="text"></p><br/>
 	    <button type="button" id="loginBtn" class="btn">로그인</button>
 	    <button type="button" id="searchBtn" class="btn btn-info">아이디, 비밀번호 찾기</button>
 	  </form>
+	  
+	  
 	  
 	  <a id="kakao-login-btn"></a>
     <a href="http://developers.kakao.com/logout"></a>
