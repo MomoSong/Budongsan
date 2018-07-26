@@ -59,7 +59,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 </script>
 </head>
 <body>
-<!-- <div class="container"> -->
+<div class="container">
   <div class="panel panel-default">
     <div class="panel-heading">
     	<span>게시판 리스트</span>
@@ -163,7 +163,7 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 	  </table>
     </div>
   </div>
-<!-- </div> -->
+</div>
 
 </body>
 </html>
