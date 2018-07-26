@@ -104,7 +104,6 @@ public class FurnitureController
 		System.out.println(getClass().getSimpleName() + ".write():POST");
 		String Path = session.getServletContext().getRealPath("/resources/saveImage"); 
 	
-		
 		List<MultipartFile> files = multipartHttpServletRequest.getFiles("files");
 		
 		boardDTO.setUUID( UUID.randomUUID().toString());
@@ -137,15 +136,35 @@ public class FurnitureController
 		model.addAttribute("dto", service.view(id, false));
 		// prefix + return String + suffix
 		// /WEB-INF/views/board/update.jsp
-		return "board/update";
+		return "furniture/update";
 	}
 
 	// 글수정 처리 - 수정한 제목, 내용, 작성자를 글번호와 함께 DAO에 보내서 DB에 저장한다.
 	@RequestMapping(value = "/furniture/update.do", method = RequestMethod.POST)
-	public String update(FurnitureDTO boardDTO, RedirectAttributes rttr)
+	public String update(FurnitureDTO boardDTO, RedirectAttributes rttr,HttpSession session,
+			MultipartHttpServletRequest multipartHttpServletRequest, MultipartFile file ) throws IOException
 	{
 		System.out.println(getClass().getSimpleName() + ".write():POST");
+		
+		String Path = session.getServletContext().getRealPath("/resources/saveImage"); 
+		
+		List<MultipartFile> files = multipartHttpServletRequest.getFiles("files");
+		
+		boardDTO.setPicture(file.getBytes());
+		
+		LoginDTO dto = (LoginDTO) session.getAttribute("login");
+		boardDTO.setCpn(dto.getEmail());
+				 
 		service.update(boardDTO);
+		System.out.println(boardDTO);
+		
+		int id = service.getTitleID(boardDTO); 
+		boardDTO.setId(id);	
+		  // 리스트 이미지 저장
+		UploadFileUtil.saveImg(boardDTO, Path);
+		  // 뷰 이미지 저장
+		UploadFileUtil.saveViewImg(files, ""+id, Path);
+		
 		// 딱 한번만 적용되고 다음에는 없어지는 속성 저장
 		rttr.addFlashAttribute("msg", "updateOK");
 		// prefix + return String + suffix

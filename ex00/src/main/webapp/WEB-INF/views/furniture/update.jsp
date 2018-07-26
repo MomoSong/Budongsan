@@ -23,40 +23,81 @@
 <body>
 
 <div class="container">
-  <div class="panel panel-default">
-    <div class="panel-heading">게시판 글수정</div>
-    <div class="panel-body">
-	    <form class="form-horizontal" method="post">
-		  <div class="form-group">
-		    <label class="control-label col-sm-2" for="id">번호</label>
-		    <div class="col-sm-10">
-		      <input type="text" class="form-control" id="id" name="id"
-		      readonly="readonly" value="${dto.id }">
-		    </div>
-		  </div>
-		  <div class="form-group">
-		    <label class="control-label col-sm-2" for="title">제목</label>
-		    <div class="col-sm-10">
-		      <input type="text" class="form-control" id="title" name="title"
-		       pattern=".{4,100}" placeholder="제목입력 4자이상"
-		       value="${dto.title }">
-		    </div>
-		  </div>
-<!-- 		  <div class="form-group"> -->
-<!-- 			 <label for="content"  class="control-label col-sm-2">내용:</label> -->
-<!-- 		     <div class="col-sm-10"> -->
-<!-- 			   <textarea class="form-control" rows="5" id="content" -->
-<%-- 			   name="content">${dto.content }</textarea> --%>
-<!-- 			 </div> -->
-<!-- 			</div> -->
-		  <div class="form-group">
-		    <label class="control-label col-sm-2" for="cpn">작성자:</label>
-		    <div class="col-sm-10"> 
-		      <input type="text" class="form-control" id="cpn" name="cpn"
-		       placeholder="작성자 2-10글자." pattern="[가-힣]{2,10}"
-		       value="${dto.cpn }">
-		    </div>
-		  </div>
+		<div class="panel panel-default">
+			<div class="panel-heading">게시판 글쓰기</div>
+			<div class="panel-body">
+				<form class="form-horizontal" method="post"
+					enctype="multipart/form-data">
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="title">제목:</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="title" name="title"
+								pattern=".{4,100}" placeholder="제목입력 4자이상"
+								value="${dto.title }">
+						</div>
+					</div>
+			
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="model_id">모델명:</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="model_id"
+								name="model_id" placeholder="작성자 2-10글자." pattern="{2,10}"
+								value="${dto.model_id }">
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="makecp">제조사:</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="makecp" name="makecp"
+								placeholder="작성자 2-10글자." pattern="{2,10}"
+								value="${dto.makecp }">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="price">가격:</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="price" name="price"
+								placeholder="숫자만." pattern="[0-9]{}"
+								value="${dto.price }">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="content" class="control-label col-sm-2">상품정보:</label>
+						<div class="col-sm-10">
+							<textarea class="form-control" rows="5" id="content"
+								name="content">${dto.content }</textarea>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="content" class="control-label col-sm-2">수량:</label>
+						<div class="col-sm-10">
+							 <input type="number" name="counts" min="1" max="9999999"
+							 value="${dto.counts }">
+							 <input type="hidden" name="UUID" value="${dto.UUID }">		
+						</div>
+					</div>
+
+					<div class="form-group">
+						<!-- 		 	 <form id='form1' action="/board/uploadForm.do" method="post" -->
+						<!-- 				enctype="multipart/form-data"> -->
+						<label class="control-label col-sm-2" for="'file'"> 이미지:</label>
+						<div class="col-sm-10">
+							<!-- 		   <form id='form1' method="post" enctype="multipart/form-data" method="post"> -->
+							<input type='file' name='file' class="form-control">
+							<!--  			</form> -->
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label class="control-label col-sm-2" for="'files'">뷰 이미지: </label>
+						<div class="col-sm-10">						
+								<input multiple="multiple" type='file' name='files'
+									class="form-control">	<small class="text-muted">사이트는 400X400px에 맟추어져있습니다.</small>				
+						</div>
+					</div>
 		  <div class="form-group"> 
 		    <div class="col-sm-offset-2 col-sm-10">
 		      <button type="submit" class="btn btn-default">수정</button>

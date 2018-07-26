@@ -46,7 +46,7 @@
 	<!-- 게시판 글보기 : select =>view, update form -->
 <!-- 	<select id="view" resultType="org.zerock.board.dto.BoardDTO"> -->
 	<select id="view" resultType="FurnitureDTO">
-		select id, title, writeDate, hit,makecp,content,model_id,price,counts,cpn
+		select id, title, writeDate, hit,makecp,content,model_id,price,counts,cpn,UUID
 		from furniturelist
 		where id = #{id}
 		
@@ -67,8 +67,9 @@
 	
 	<!-- 게시판 글수정 처리 : update -->
 	<update id="update">
-		update furniturelist 
-		set title = #{title}, cpn = #{cpn}
+		update FURNITURELIST 
+		set title = #{title}, cpn = #{cpn}, makecp = #{makecp}, content = #{content}, model_id = #{model_id},
+		price = #{price}, counts = #{counts}
 		where id = #{id}
 	</update>
 

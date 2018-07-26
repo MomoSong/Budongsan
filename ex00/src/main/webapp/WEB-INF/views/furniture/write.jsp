@@ -37,21 +37,7 @@
 								pattern=".{4,100}" placeholder="제목입력 4자이상">
 						</div>
 					</div>
-					<!-- 		  <div class="form-group"> -->
-					<!-- 			 <label for="content"  class="control-label col-sm-2">내용:</label> -->
-					<!-- 		     <div class="col-sm-10"> -->
-					<!-- 			   <textarea class="form-control" rows="5" id="content" -->
-					<!-- 			   name="content"></textarea> -->
-					<!-- 			 </div> -->
-					<!-- 			</div> -->
-					<!-- 					<div class="form-group"> -->
-					<!-- 						<label class="control-label col-sm-2" for="cpn">사업자명:</label> -->
-					<!-- 						<div class="col-sm-10"> -->
-					<!-- 							<input type="text" class="form-control" id="cpn" name="cpn" -->
-					<!-- 								placeholder="작성자 2-10글자." pattern="[가-힣][a~z][A~Z]{2,10}"> -->
-					<!-- 						</div> -->
-					<!-- 					</div> -->
-
+			
 					<div class="form-group">
 						<label class="control-label col-sm-2" for="model_id">모델명:</label>
 						<div class="col-sm-10">
@@ -80,6 +66,7 @@
 						<div class="col-sm-10">
 							<textarea class="form-control" rows="5" id="content"
 								name="content"></textarea>
+							
 						</div>
 					</div>
 					
@@ -105,7 +92,8 @@
 						<label class="control-label col-sm-2" for="'files'">뷰 이미지: </label>
 						<div class="col-sm-10">						
 								<input multiple="multiple" type='file' name='files'
-									class="form-control">	<small class="text-muted">사이트는 400X400px에 맟추어져있습니다.</small>				
+									class="form-control">	<small class="text-muted">사이트는 400X400px에 맟추어져있습니다.</small>		
+								
 						</div>
 					</div>
 
