@@ -39,7 +39,7 @@ pageContext.setAttribute("absUri", request.getContextPath());
 	  $(document).ready(function(){
 		  var idx = 0;
 		  var opposite = false;
-		  
+		  $("#"+idx+"").addClass("active");
 		  $("#right").click(function(){
 			  var check = idx;
 			  $(".item").removeClass("active");
@@ -47,32 +47,11 @@ pageContext.setAttribute("absUri", request.getContextPath());
 				  idx = -1;
 			  }
 			  idx++;
-			  if(check == idx){
-				  opposite = true;
-				  $(this).click();
-			  }else{
-				  opposite = false;
-			  }
 			  $("#"+idx+"").addClass("active");
 			  console.log(idx);
 		  });
 		  
-		  $("#left").click(function(){
-			  var check = idx;
-			  $(".item").removeClass("active");
-			  if(idx < 1){
-				  idx = 3;
-			  }
-			  idx--;
-			  if(check == idx){
-				  opposite = true;
-				  $(this).click();
-			  }else{
-				  opposite = false;
-			  }
-			  $("#"+idx+"").addClass("active");
-			  console.log(idx);
-		  });
+
 		  
 	  });
   
@@ -179,9 +158,7 @@ pageContext.setAttribute("absUri", request.getContextPath());
 						<c:forEach items="${carousel }" varStatus="status"  var="main">
 					      <div id="${status.index }" class="item">
 					        <img src="#" alt="${main.title }" style="width:100%;">
-					        <script type="text/javascript">
 					        
-					        </script>
 					      </div>
 						</c:forEach>
 					
