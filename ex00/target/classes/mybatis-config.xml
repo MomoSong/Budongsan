@@ -10,6 +10,7 @@
 		<typeAlias alias="FurnitureDTO"	type="org.zerock.furniture.dto.FurnitureDTO" />
 		<typeAlias alias="Furniture_CommentDTO"	type="org.zerock.furniture.dto.Furniture_CommentDTO" />
 		<typeAlias alias="boardDTO" type="org.zerock.agentboard.dto.AgentDTO"/>
+		<typeAlias alias="NewsDTO" type="com.budongsan.news.dto.NewsDTO"/>
 		<package name="org.zerock.agentboard.dto"/>
 	</typeAliases>
 	
