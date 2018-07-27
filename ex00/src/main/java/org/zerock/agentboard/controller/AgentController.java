@@ -1,6 +1,5 @@
 package org.zerock.agentboard.controller;
 
-import java.awt.geom.GeneralPath;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -187,6 +186,11 @@ public class AgentController {
 		String originalName = boardDTO.getFile1().getOriginalFilename();
 		String path = session.getServletContext().getRealPath("/resources/imgfile");
 		System.out.println(path);
+		
+		// 엔터입력한 부분을 html tag인 <br>로 입력 , DB에 <br>태그와 같이 저장됨
+		String content = ((String)boardDTO.getContent()).replace("\r\n", "<br>");
+		boardDTO.setContent(content);
+		
 		if(originalName.equals("")) System.out.println("빈문자");
 		String savedFile = "";
 		// 첨부 파일이 없으면 저장하지 않고 있으면 저장한다.
@@ -221,6 +225,11 @@ public class AgentController {
 	@RequestMapping(value = "/agentboard/update.do", method = RequestMethod.POST)
 	public String update(AgentDTO boardDTO, RedirectAttributes rttr, Criteria cri, Model model) {
 		System.out.println(getClass().getSimpleName()+".update():POST");
+		
+		// 엔터입력한 부분을 html tag인 <br>로 입력 , DB에 <br>태그와 같이 저장됨
+		String content = ((String)boardDTO.getContent()).replace("\r\n", "<br>");
+		boardDTO.setContent(content);
+		
 		service.update(boardDTO);
 		// 딱 한번만 적용되고 다음에는 없어지는 속성 저장
 		rttr.addFlashAttribute("msg", "updateOK");
