@@ -27,6 +27,7 @@ import org.zerock.furniture.dto.FurnitureDTO;
 import org.zerock.furniture.dto.Furniture_CommentDTO;
 import org.zerock.furniture.dto.Criteria;
 import org.zerock.furniture.service.FurnitureService;
+import org.zerock.furniture.util.MediaUtils;
 import org.zerock.furniture.util.UploadFileUtil;
 import org.zerock.member.dto.LoginDTO;
 
@@ -72,7 +73,13 @@ public class FurnitureController
 	public String view(Model model, int id)
 	{
 		System.out.println(getClass().getSimpleName() + ".view()");
-		model.addAttribute("dto", service.view(id, true));
+		FurnitureDTO furnitureDTO= service.view(id, true);
+		
+		furnitureDTO.setContent(MediaUtils.CreateBR(furnitureDTO.getContent()));
+		
+		
+		//model.addAttribute("dto", service.view(id, true));
+		model.addAttribute("dto", furnitureDTO);
 	
 		model.addAttribute("commentlist",service.commentlist(id));
 		return "furniture/view";

@@ -24,4 +24,16 @@ public class MediaUtils
 
 		return mediaMap.get(type.toUpperCase());
 	}
+	
+	public static String CreateBR (String connent)
+	{
+		return connent.replace("\n", "<br>");		
+	}
+	
+	public static String CreateBR (int number)
+	{
+		String temp = Integer.toString(number);
+		temp.replace("(?<=\\d)(?=(\\d{3})+)" , ",");
+		return temp;
+	}
 }
