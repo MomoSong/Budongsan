@@ -136,7 +136,7 @@
 	<update id="insertComment">
 	update furniture_comments 
 	set comments = #{comments}, writedate = sysdate
-	where userid = #{userid} and furnitureid = #{furnitureid}
+	where userid = #{userid} and furnitureid = #{furnitureid} and comments is null
 	</update>
 	
 	<insert id="BuyProcess">

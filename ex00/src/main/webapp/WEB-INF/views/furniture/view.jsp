@@ -60,6 +60,7 @@
 		{
 			// 			location="list.do";
 			// 폼에서 글번호 제거
+			alert("버튼이 동작합니다.")
 			$("#id").attr("disabled", "disabled");
 			$("#dataForm").attr("action", "list.do");
 			$("#dataForm").submit();
@@ -208,6 +209,7 @@
 			<button id="listBtn" class="btn btn-danger">뒤로가기</button>
 		</div>
 	</div>
+	
 	</br>
 
 	<div id="field"></div>
