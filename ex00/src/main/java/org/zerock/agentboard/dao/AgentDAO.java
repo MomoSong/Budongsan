@@ -101,6 +101,6 @@ public class AgentDAO {
 	
 	//메일 페이지에 올라갈 게시물 3개
 		public List<AgentDTO> mainCarousel(){
-			return sqlSession.selectList("org.zerock.mapper.BoardMapper.mainPage");
+			return sqlSession.selectList("org.zerock.mapper.agentMapper.mainPage");
 		}
 }
