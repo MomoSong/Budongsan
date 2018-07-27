@@ -15,7 +15,7 @@
 label {
 	background-color: #FAEBD7;
 }
-</style> 
+</style>
 <script type="text/javascript">
 	$(document).ready(function(){
 		// 취소 버튼 이벤트 처리

@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.zerock.agentboard.dao.AgentDAO;
 import org.zerock.agentboard.dto.AgentDTO;
 import org.zerock.agentboard.dto.Criteria;
+import org.zerock.agentboard.dto.FileDTO;
+import org.zerock.agentboard.dto.AttachFile;
 
 @Service
 public class AgentService {
@@ -26,6 +28,10 @@ public class AgentService {
 		return dao.list(cri);
 	}
 	
+	public List<FileDTO> fileList(){
+		return dao.fileList();
+	}
+	
 	// 게시판 글보기+1증가, 글수정 - 글번호를 받아서 dao 한테 전달
 	public AgentDTO view(Integer no, boolean isView) {
 		System.out.println(getClass().getSimpleName()+".view()");
@@ -34,10 +40,18 @@ public class AgentService {
 		return dao.view(no);
 	}
 	
+	// 자료실 글보기에서 글번호에 따라 파일 가져오기
+		public List<AttachFile> getFiles(int no){
+			return dao.getFiles(no);
+		}
+	
 	// 게시판 글쓰기 - BoardDTO를 받아서 dao 한테 전달
 	public void insert(AgentDTO boardDTO) {
 		System.out.println(getClass().getSimpleName()+".insert()");
 		dao.insert(boardDTO);
+		// data_file DB에 데이터 저장
+			if(boardDTO.getFileName()!=null && !boardDTO.getFileName().equals(""))
+				dao.insertFile(boardDTO);
 	}
 	
 	// 게시판 글수정 - BoardDTO를 받아서 dao 한테 전달
@@ -47,26 +61,21 @@ public class AgentService {
 	}
 	
 	// 게시판 글삭제 - 글번호(no)를 받아서 dao 한테 전달
+	@Transactional
 	public void delete(Integer no) {
 		System.out.println(getClass().getSimpleName()+".delete()");
+		dao.deleteAttach(no);
 		dao.delete(no);
 	}
 	
-	// 트렌젝션 테스트를 위한 메서드 - 게시판 글쓰기 , 댓글 쓰기 동시에 처리
-	@Transactional
-	public void testTransaction() throws Exception {
-		// 게시판 글쓰기
-		AgentDTO boardDTO = new AgentDTO();
-		boardDTO.setTitle("tran");
-		boardDTO.setContent("tran");
-		boardDTO.setWriter("tran");
-		dao.insert(boardDTO); // 정상처리
-		System.out.println("게시판 글쓰기 성공");
+	// 첨부파일을 조회하는 기능
+	public List<String> getAttach(Integer no) {
+		System.out.println(getClass().getSimpleName()+".getAttach()");
+		return dao.getAttach(no);
 	}
 	
 	//메인 페이지에 올라갈 게시물 3개
-	public List<AgentDTO> mainCarousel(){
-		return dao.mainCarousel();
-	}
-	
+		public List<AgentDTO> mainCarousel(){
+			return dao.mainCarousel();
+		}
 }

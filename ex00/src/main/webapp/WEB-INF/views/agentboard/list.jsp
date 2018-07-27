@@ -18,6 +18,9 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <style type="text/css">
+.pagination{
+	color: black; background-color: black;
+}
 .col-md-4 {
 	border: 1px solid gray;
 }
@@ -30,11 +33,23 @@ fieldset {
 th {
 	color: white; background-color:black; font-size: 13pt;
 }
+.image{
+	height: 250px;
+	width: 100%;
+}
+.imagenone{
+	height: 250px;
+	width: 100%;
+}
 </style>
 
 <script type="text/javascript">
-	$(document).ready(function(){
-		
+// function a(){
+// 	alert("test");
+	/* $(".imagenone").css('visibility', 'hidden');	
+} */
+
+	$(document).ready(function(){	
 		// 버튼 이벤트 처리
 		// 글쓰기 버튼
 		$("#writeBtn").click(function(){
@@ -82,12 +97,13 @@ th {
 	<strong>지역별 추천방</strong>
 </fieldset>
     <div class="panel-heading">
-    	<span>게시판 리스트</span>
+    	<span>목록
     	<select name="perPageNum" id="perPageNum">
     		<option ${cri.perPageNum == 9?"selected='selected'":"" }>9</option>
     		<option ${cri.perPageNum == 12?"selected='selected'":"" }>12</option>
     		<option ${cri.perPageNum == 15?"selected='selected'":"" }>15</option>
-    	</select>
+    	</select>개씩
+    	</span>
     	<form class="navbar-form" >
 			 <div class="form-group navbar-left">
 				 <select class="form-control navbar-left list-group"
@@ -126,18 +142,29 @@ th {
      <p class = "allPost" align="right" style="background-color:black; color: white; font-size: large;"> 
      	전체 글: &nbsp; <strong> <c:out value ="${cri.totalCount} " /> </strong> 개 </p>
       <table class="table">
+
 	    <!-- 데이터 만큼 반복 시작 -->
+	    
 	    <c:forEach items="${list }" var="dto">
 	      <div class="col-md-4">
 	        <div class="data">
 	          <div>${dto.no } </div><br>
-	          <div style="font-weight: bold; color: red">보증금/월세-${dto.title } </div><br>
-	          <div style="font-weight: bold">방구조-${dto.type }</div><br>
-	          <div>주소-${dto.addr1 }</div><br>
-	          <div>조회수-${dto.hit }</div><br>
+	          <div>
+	          <c:if test="${!empty dto.fileName }" >
+              <img class="image" src="/resources/imgfile/${dto.fileName }">
+              </c:if>
+	          <c:if test="${empty dto.fileName }" >
+	          <img class="imagenone" src="https://upload.wikimedia.org/wikipedia/commons/6/6c/No_image_3x4.svg">
+	          </c:if>
+	          </div>
+	          <div  style="font-weight: bold; color: red">&#9830; 보증금/월세-${dto.title } </div><br>
+	          <div style="font-weight: bold">&#9830; 방구조-${dto.type }</div><br>
+	          <div>&#9830; 주소-${dto.addr1 }</div><br>
+	          <div>&#9830; 조회수-${dto.hit }</div><br>
 	        </div>
 	      </div>
 	    </c:forEach>
+
 	    
 	    
 	    <!-- 데이터 만큼 반복 끝 -->
@@ -149,7 +176,7 @@ th {
 		    		<c:if test="${cri.prev }">
 					  <li>
 					  	<a href="list.do?page=${cri.startPage-1 }&perPageNum=${cri.perPageNum}&searchType=${cri.searchType}&keyword=${cri.keyword}">
-					  		<i class="glyphicon glyphicon-step-backward"></i>
+					  		<i class="glyphicon glyphicon-step-backward" ></i>
 					  	</a>
 					  </li>
 					</c:if>
@@ -169,7 +196,7 @@ th {
 					</ul>
 	    		</td>
 	    	</tr>
-	    	<tr> 
+	    	<tr>
 	    		<td colspan="5">
 	    			<button id="writeBtn">글쓰기</button>
 	    			<button id="reloadBtn">새로고침</button>
@@ -179,8 +206,7 @@ th {
 	  </table>
     </div>
   </div>
- </div>
-
+</div> 
 
 </body>
 </html>

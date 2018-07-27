@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.zerock.mapper.BoardMapper">
+<mapper namespace="org.zerock.mapper.agentMapper">
 
 	<!-- 게시판 리스트 : select -->
 	<select id="list" resultType="BoardDTO">
@@ -20,11 +20,22 @@
 		where rnum between #{startRow} and #{endRow}
 	</select>
 	
+	<select id="listfile" resultType="fileDTO">
+		select no, filename from data_file
+	</select>
+	
 	<!-- 게시판 글보기 : select =>view, update form -->
 <!-- 	<select id="view" resultType="org.zerock.agentboard.dto.BoardDTO"> -->
 	<select id="view" resultType="boardDTO">
 		select no, title, type, content, addr1, writer, tel, writeDate, hit
 		from agentboard
+		where no = #{no}
+	</select>
+	
+	<!-- 자료실 글보기 파일 : select =>view, update form -->
+	<select id="viewFiles" resultType="AttachFile">
+		select fno, no, fileName, regDate
+		from data_file
 		where no = #{no}
 	</select>
 	
@@ -37,7 +48,15 @@
 	<!-- 게시판 글쓰기 : insert -->
 	<insert id="insert">
 		insert into agentboard(no, title, type, content, addr1, writer, tel)
-		values(agentboard_seq.nextval, #{title}, #{type}, #{content}, #{addr1}, #{writer}, #{tel})
+		values(agentboard_seq.nextval, #{title}, #{type}, #{content}, #{addr1}
+		, #{writer}, #{tel})
+	</insert>
+	
+	<!-- 자료실 첨부파일 쓰기 : insert ==> 자료실 글쓰기와 동시에, 수정 첨부 파일만 따로 -->
+	<insert id="insertFile">
+		insert into data_file(fno, no, fileName)
+		values(data_file_seq.nextval, (select max(no) from agentboard),
+ 		#{fileName})
 	</insert>
 	
 	<!-- 게시판 글수정 처리 : update -->
@@ -53,6 +72,12 @@
 		delete from agentboard
 		where no = #{no}
 	</delete>
+	
+	<!-- 특정 게시물 번호에 속하는 모든 첨부파일을 삭제합니다. -->
+	<delete id="deleteAttach">
+	delete from data_file where no = #{no}
+	</delete>
+	
 	
 	<!-- 전체 데이터의 갯수를 세는 처리 -->
 	<select id="totalCount" resultType="Integer">
@@ -89,11 +114,13 @@
 		</if>
 	</sql>
 	
-<!-- 메인 페이지 Carousel을 장식하는 데이타를 가져오는 쿼리 -->
+	<!-- 메인 페이지 Carousel을 장식하는 데이타를 가져오는 쿼리 -->
 <select id="mainPage" resultType="boardDTO">
 	select no, title, type, hit from 
 	(select no, title, type, hit from agentboard order by hit desc) 
 	where ROWNUM <![CDATA[<]]> 4  
 </select>	
+	
+	
 	
 </mapper>

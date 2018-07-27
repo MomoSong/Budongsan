@@ -32,6 +32,11 @@
 	<beans:property name="maxUploadSize" value="10485760"></beans:property>
 	</beans:bean>
 	
+	<beans:bean id="uploadPath" class="java.lang.String">
+		<!-- new String("D:\workspace\spring\ex2\src\main\webapp\resources\imgfile") -->
+		<beans:constructor-arg value="D:\workspace\spring\ex2\src\main\webapp\resources\imgfile" />	
+	</beans:bean>
+	
 	<!-- 객체를 자동 생성하게 하는 태그 : base-package 밑으로 다 찾는다.
 	  자동 생성되는 객체 : @Controller, @Service, @Repository, @Component,
 	  @RestController(데이터만 전송:Ajax) -->

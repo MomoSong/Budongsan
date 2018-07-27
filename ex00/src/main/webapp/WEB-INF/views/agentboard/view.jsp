@@ -54,7 +54,6 @@ th {
 	$(document).ready(function(){
 		
 		var no = ${dto.no};
-		
 		// 버튼 이벤트 처리
 		// 수정 버튼
 		$("#updateBtn").click(function(){
@@ -66,8 +65,23 @@ th {
 		
 		// 삭제 버튼
 		$("#deleteBtn").click(function(){
-			if(confirm("정말 삭제하시겠습니까?"))
+			if(confirm("정말 삭제하시겠습니까?")){
+				
+				var arr=[];
+				$("#fileList").each(function(index){
+					arr.push($(this).attr("data-src"));
+				});
+				if(arr.length>0){
+					$.post("/deleteAllFiles",{files:arr}, function(){
+						
+					});
+				}
+				
+				$("fileList").attr("action", "/agentboard/delete.do")
+				$("fileList").submit();
 				location="delete.do?no=${dto.no}";
+			}
+			   
 		});
 		
 		// 리스트 버튼
@@ -117,7 +131,7 @@ th {
 		update : 글번호, 한페이지의 데이터 갯수, 페이지, 검색 타입, 검색어
 		list : 한페이지의 데이터 갯수, 페이지, 검색 타입, 검색어
 -->
-<form id="dataForm">
+<form id="dataForm"">
 	<input name="no" value="${param.no }" type="hidden" id="no">
 	<input name="page" value="${param.page }" type="hidden">
 	<input name="perPageNum" value="${param.perPageNum }" type="hidden">
@@ -140,6 +154,20 @@ th {
 	      <tr class="i-top">
 	      	<th>글번호</th>
 	        <td colspan="3" bgcolor=" #F5F5F5">${dto.no }</td>
+	      </tr>
+	      <tr>
+	      <th>이미지</th>
+	      <td colspan="3">
+	      
+	 	     <div id="fileList">
+			  	<c:forEach items="${list }" var="fileDto">
+	  				<c:if test="${fileDto.image }">
+	  					<img src="/displayFile?filename=${fileDto.fileName }" /><br/>
+	  				</c:if>
+	  			</c:forEach>
+	 		 </div>
+	 		 
+	  	  </td>
 	      </tr>
 	      <tr>
 	      	<th >보증금/월세(만원)</th>
