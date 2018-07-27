@@ -90,7 +90,7 @@
 	seller_name = #{seller_name}, grade = #{grade}, money= money + #{money} WHERE email = #{email}
 </update>
 
-<!-- dto 객체를 받아와 회원정보를 수정하는 쿼리 -->
+<!-- dto 받아와 회원 탈퇴를 구현하는 쿼리 -->
 <update id="secession">
 	DELETE FROM b_member WHERE email = #{email}
 </update>

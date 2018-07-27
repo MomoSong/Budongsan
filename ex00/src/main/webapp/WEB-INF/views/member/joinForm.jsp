@@ -143,7 +143,7 @@ $(document).ready(function () {
 		return; 
 	});
 	
-	// 댓글 등록 이벤트 처리
+	// 아이디 중복처리
 	$("#checkBtn").click(function(){
 //			alert("add");
 		// Ajax를 통해서 데이터를 서버에 보내기
