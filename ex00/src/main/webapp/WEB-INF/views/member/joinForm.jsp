@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%
+ response.setHeader("Cache-Control","no-cache");
+ response.setHeader("Pragma","no-cache");
+ response.setDateHeader("Expires",0);
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -201,62 +207,87 @@ $(document).ready(function () {
 });
 </script>
 
+<style type="text/css">
+.form-control{
+	height: 50px; 
+	font-size: 18px;
+	margin: 0 auto;
+	vertical-align: middle;
+}
+#last-div{
+	margin-bottom: 50px;
+}
+
+#form{
+	width: 70%;
+  	height: 70%;
+  	margin: 40px auto;
+  	
+  	
+  	
+}
+
+</style>
 
 </head>
 <body>
-<div class="container">
+<div id="form" class="container">
   <h2>회원가입</h2>
   
 <!--   <button id="test" type="button">디버깅용</button> -->
   
-  	<div class="container" id ="commentdiv" >
+  	<div class="inner-container" id ="commentdiv" >
 		<div id="#user_type_form">
-	    <label><input type="radio" class="radio" name="grade" value="1" checked />일반회원</label>
-	    <label><input type="radio" class="radio" name="grade" value="5" />판매자</label>
+	    <input type="radio" class="radio" name="grade" value="1" style="display: inline; margin-right: 5px" checked /><label class="radio-label" style="margin-right: 15px">일반회원</label>
+	    <input type="radio" class="radio" name="grade" value="5" style="display: inline; margin-right: 5px"/><label class="radio-label">판매자</label>
 		</div>
 	</div>
-  
+  <div class= "inner-container">
   <form method="post" id="joinForm">
-    <div class="form-group">
-      <label for="email">이메일 아이디:</label><br/>
-      <input type="email" class="form-control col-sm-4" id="email" placeholder="아이디 입력"
-       name="email" ><button type="button" class="btn btn-success" id="checkBtn">중복체크</button>
-       <span id="icon1" class="glyphicon glyphicon-remove" ></span><br/>
+	    <div class="form-group">
+	      <label for="email">이메일 아이디:</label><br/>
+	      <input type="email" class="form-control col-sm-4" id="email" placeholder="아이디 입력"
+	       name="email" ><button type="button" class="btn btn-success" id="checkBtn" >중복체크</button>
+	       <span id="icon1" class="glyphicon glyphicon-remove" ></span><br/>
+	    </div>
+	    <div class="form-group">
+	      <label for="pw">비밀번호:</label><br/>
+	      <input type="password" class="form-control col-sm-4" id="pw" placeholder="비밀번호 6~20 영문대소문자와 최소 1개의 숫자 혹은 특수문자를 포함하세요. "
+	       name="pw" style="font-size: 9px;"><span id="icon2" class="glyphicon glyphicon-remove" ></span><br/><br/>
+	    </div>
+	    <div class="form-group">
+	      <label for="age">나이:</label><br/>
+	      <input type="number" class="form-control col-sm-4" id="age" placeholder="나이 입력"
+	       name="age">
+	    </div><br/><br/>
+	    <div class="form-group">
+	      <label for="name">이름:</label><br/>
+	      <input type="text" class="form-control col-sm-4" id="name" placeholder="이름 입력"
+	       name="name">
+	    </div><br/>
+	    <div class="form-group" id="user_type" style="visibility: hidden;">
+	      <label for="seller_name">사업자명:</label><br/>
+	      <input type="text" class="form-control col-sm-4" id="seller_name" 
+	       name="seller_name" value="일반회원">
+	    </div><br/><br/>
+	    <div class="form-group">
+	      <label for="hp">휴대폰 번호:</label><br/>
+	      <input type="tel" class="form-control col-sm-4" id="hp" placeholder="휴대폰번호 입력"
+	       name="hp"><span id="icon3" class="glyphicon glyphicon-remove" ></span><br/>
+	    </div><br/><br/>
+	    <div class="form-group">
+	      <label for="addr">주소입력:</label><br/>
+	      <input type="text" class="form-control col-sm-4" id="addr" placeholder="주소 입력"
+	       name="addr">
+	    </div><br/><br/>
+  
+    
+	 	<div id="last-div">
+	    <button type="button" id="submitBtn" class="btn btn-success">회원가입</button>
+	    <button type="button" id="cancel" class="btn btn-danger">취소</button>
+	    </div>
+	  </form>
     </div>
-    <div class="form-group">
-      <label for="pw">비밀번호:</label><br/>
-      <input type="password" class="form-control col-sm-4" id="pw" placeholder="비밀번호 6~20 영문대소문자와 최소 1개의 숫자 혹은 특수문자를 포함하세요. "
-       name="pw"><span id="icon2" class="glyphicon glyphicon-remove" ></span><br/>
-    </div>
-    <div class="form-group">
-      <label for="age">나이:</label><br/>
-      <input type="number" class="form-control col-sm-4" id="age" placeholder="나이 입력"
-       name="age">
-    </div><br/>
-    <div class="form-group">
-      <label for="name">이름:</label><br/>
-      <input type="text" class="form-control col-sm-4" id="name" placeholder="이름 입력"
-       name="name">
-    </div><br/>
-    <div class="form-group" id="user_type" style="visibility: hidden;">
-      <label for="seller_name">사업자명:</label><br/>
-      <input type="text" class="form-control col-sm-4" id="seller_name" 
-       name="seller_name" value="일반회원">
-    </div><br/>
-    <div class="form-group">
-      <label for="hp">휴대폰 번호:</label><br/>
-      <input type="tel" class="form-control col-sm-4" id="hp" placeholder="휴대폰번호 입력"
-       name="hp"><span id="icon3" class="glyphicon glyphicon-remove" ></span><br/>
-    </div>
-    <div class="form-group">
-      <label for="addr">주소입력:</label><br/>
-      <input type="text" class="form-control col-sm-4" id="addr" placeholder="주소 입력"
-       name="addr">
-    </div><br/>
- 
-    <button type="button" id="submitBtn" class="btn btn-success">회원가입</button>
-    <button type="button" id="cancel" class="btn btn-danger">취소</button>
-  </form>
 </div>
 </body>
 </html>
