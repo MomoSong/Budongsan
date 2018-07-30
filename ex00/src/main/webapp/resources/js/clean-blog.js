@@ -25,6 +25,7 @@
         if (currentTop < this.previousTop) {
           //if scrolling up...
           if (currentTop > 0 && $('#mainNav').hasClass('is-fixed')) {
+        	  
             $('#mainNav').addClass('is-visible');
           } else {
             $('#mainNav').removeClass('is-visible is-fixed');

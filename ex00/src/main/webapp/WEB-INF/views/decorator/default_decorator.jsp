@@ -30,7 +30,7 @@ pageContext.setAttribute("absUri", request.getContextPath());
    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
    <!-- Custom styles for this template -->
-   <link href="${pageContext.request.contextPath}/resources/css/clean-blog.min.css" rel="stylesheet">
+   <link href="${pageContext.request.contextPath}/resources/css/clean-blog.css" rel="stylesheet">
   <link href="${pageContext.request.contextPath}/resources/css/nanumFont.css" rel="stylesheet" type="text/css">
 
   
@@ -143,6 +143,13 @@ pageContext.setAttribute("absUri", request.getContextPath());
         </div>
       </div>
     </nav>
+    <header class="masthead" style="background-color: gray;" >
+      
+      <div class="container" style="background-color: gray;">
+        
+        
+      </div>
+    </header>
 
  
   
@@ -176,7 +183,7 @@ pageContext.setAttribute("absUri", request.getContextPath());
     <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Custom scripts for this template -->
-    <script src="resources/js/clean-blog.min.js"></script>
+    <script src="resources/js/clean-blog.js"></script>
   </body>
 </html>
         
