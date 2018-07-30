@@ -91,7 +91,7 @@ strong{
 	      </tr>
 			<tr>
 	      <th>내용</th>
-	       <td style="width:"><img src="${dto.img}" width="400px" align="left"><strong>${dto.title}</strong><br><br><br>${dto.content }</td>
+	       <td><img src="${dto.img}" width="400px" height="400px" align="left" style="margin: 30px"><strong>${dto.title}</strong><br><br><br>${dto.content }</td>
 	        </tr>
 	    </tbody>
 	    <tfoot>
