@@ -116,9 +116,11 @@
 	
 	<!-- 메인 페이지 Carousel을 장식하는 데이타를 가져오는 쿼리 -->
 <select id="mainPage" resultType="boardDTO">
-	select no, title, type, hit from 
-	(select no, title, type, hit from agentboard order by hit desc) 
-	where ROWNUM <![CDATA[<]]> 4  
+	select no, title, type, hit, fileName from 
+	(select ab.no, ab.title, ab.type, ab.hit, df.filename 
+	from agentboard ab, data_file df WHERE ab.no = df.no 
+	order by ab.hit desc) 
+	WHERE ROWNUM <![CDATA[<]]> 4  
 </select>	
 	
 	

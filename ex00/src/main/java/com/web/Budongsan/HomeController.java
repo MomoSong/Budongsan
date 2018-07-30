@@ -34,6 +34,7 @@ public class HomeController {
 	public String home(Locale locale, Model model) throws IOException {
 		logger.info("부동산닷컴 메인페이지 구동.");
 		model.addAttribute("carousel", service.mainCarousel());
+		System.out.println(service.mainCarousel());
 		return "index";
 	}
 	
