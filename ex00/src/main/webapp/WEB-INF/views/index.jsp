@@ -23,41 +23,54 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 
   <body>
 
-
+	  <!-- Page Header -->
+    <header class="masthead" >
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading">
+              <div class="container">
+					  <h2></h2>  
+					  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+<!-- 					    Indicators -->
+					    <ol class="carousel-indicators">
+					      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+					      <li data-target="#myCarousel" data-slide-to="1"></li>
+					      <li data-target="#myCarousel" data-slide-to="2"></li>
+					    </ol>
+					
+<!-- 					    Wrapper for slides -->
+					    <div class="carousel-inner">
+					
+						<c:forEach items="${carousel }" varStatus="status"  var="main">
+					      <div id="${status.index }" class="item" style="margin: 0 auto; width:300px; height: 250px;">
+					        <a href="/agentboard/view.do?no=${main.no }">
+					        <img src="/resources/imgfile/${main.fileName }" alt="${main.title }" style="width:300px; height: 250px;">
+					        </a>
+					        <P>${main.title }</P>
+					      </div>
+						</c:forEach>
+					
+					    </div>
+					
+					    <a id="right" class="right carousel-control" href="#myCarousel" data-slide="next">
+					      <span class="glyphicon glyphicon-chevron-right"></span>
+					      <span class="sr-only">Next</span>
+					    </a>
+					  </div>
+				</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
 
    
 
   
 
-    <hr>
-
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <ul class="list-inline text-center">
-               <li class="list-inline-item">
-                <a href="https://github.com/MomoSong/Budongsan">
-                  <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-            </ul>
-            <p class="copyright text-muted">Copyright &copy; 부동산 닷컴 2018</p>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="resources/vendor/jquery/jquery.min.js"></script>
-    <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="resources/js/clean-blog.min.js"></script>
+ 
 
   </body>
 

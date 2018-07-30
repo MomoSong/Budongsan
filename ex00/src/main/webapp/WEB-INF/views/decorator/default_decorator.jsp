@@ -54,6 +54,19 @@ pageContext.setAttribute("absUri", request.getContextPath());
   
   </script>
   
+  <style type="text/css">
+/*   header{ */
+/*   	width: 100%; */
+/*   	height: 300px; */
+/*   } */
+  
+/*   .overlay{ */
+/*   	margin: 0 auto; */
+/*   } */
+  nav{
+  	background-color: gray;
+  }
+  </style>
   
   </head>
   <body>
@@ -130,51 +143,40 @@ pageContext.setAttribute("absUri", request.getContextPath());
         </div>
       </div>
     </nav>
-    
-  
-   <!-- Page Header -->
-    <header class="masthead" style="background-image: url('/resources/img/main_bg.jpg')">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="site-heading">
-              <div class="container">
-					  <h2>Hot! 매물</h2>  
-					  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-					    <!-- Indicators -->
-					    <ol class="carousel-indicators">
-					      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-					      <li data-target="#myCarousel" data-slide-to="1"></li>
-					      <li data-target="#myCarousel" data-slide-to="2"></li>
-					    </ol>
-					
-					    <!-- Wrapper for slides -->
-					    <div class="carousel-inner">
-					
-						<c:forEach items="${carousel }" varStatus="status"  var="main">
-					      <div id="${status.index }" class="item">
-					        <img src="#" alt="${main.title }" style="width:100%;">
-					        
-					      </div>
-						</c:forEach>
-					
-					    </div>
-					
-					    <a id="right" class="right carousel-control" href="#myCarousel" data-slide="next">
-					      <span class="glyphicon glyphicon-chevron-right"></span>
-					      <span class="sr-only">Next</span>
-					    </a>
-					  </div>
-				</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
+
+ 
   
   <decorator:body></decorator:body>
     
+       <hr>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <ul class="list-inline text-center">
+               <li class="list-inline-item">
+                <a href="https://github.com/MomoSong/Budongsan">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+            </ul>
+            <p class="copyright text-muted">Copyright &copy; 부동산 닷컴 2018</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="resources/vendor/jquery/jquery.min.js"></script>
+    <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="resources/js/clean-blog.min.js"></script>
   </body>
 </html>
         
