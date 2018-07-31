@@ -84,14 +84,8 @@
 		{
 			if (confirm("정말 물건을 사시겠습니까?"))
 			{
-				var money = $
-				{
-					sessionScope.login.money
-				}
-				var price = $
-				{
-					dto.price
-				}
+				var money = "${sessionScope.login.money}"
+				var price = "${dto.price}"
 				if (money > price)
 				{
 					location = "buy.do?id=${dto.id}&cpn=${dto.cpn}";

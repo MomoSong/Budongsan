@@ -110,8 +110,14 @@ public class FurnitureController
 		
 		System.out.println(getClass().getSimpleName() + ".write():POST");
 		String Path = session.getServletContext().getRealPath("/resources/saveImage"); 
-	
-		List<MultipartFile> files = multipartHttpServletRequest.getFiles("files");
+		List<MultipartFile> files = null;
+
+		if (multipartHttpServletRequest.getFiles("files").isEmpty() != true  
+				&& file.isEmpty() != true)
+		{
+			files = multipartHttpServletRequest.getFiles("files");
+			boardDTO.setPicture(file.getBytes());
+		}
 		
 		boardDTO.setUUID( UUID.randomUUID().toString());
 		boardDTO.setPicture(file.getBytes());
@@ -123,11 +129,15 @@ public class FurnitureController
 			 
 		int id = service.getTitleID(boardDTO); 
 		boardDTO.setId(id);
-		  // 리스트 이미지 저장
-		UploadFileUtil.saveImg(boardDTO, Path);
-		  // 뷰 이미지 저장
-		UploadFileUtil.saveViewImg(files, ""+id, Path);
-
+		
+		if (multipartHttpServletRequest.getFiles("files").isEmpty() != true  
+				&& file.isEmpty() != true)
+		{
+			// 리스트 이미지 저장
+			UploadFileUtil.saveImg(boardDTO, Path);
+			// 뷰 이미지 저장
+			UploadFileUtil.saveViewImg(files, ""+id, Path);
+		}
 		// 딱 한번만 적용되고 다음에는 없어지는 속성 저장
 		rttr.addFlashAttribute("msg", "writeOK");
 		// prefix + return String + suffix
@@ -154,11 +164,15 @@ public class FurnitureController
 		System.out.println(getClass().getSimpleName() + ".write():POST");
 		
 		String Path = session.getServletContext().getRealPath("/resources/saveImage"); 
-		
-		List<MultipartFile> files = multipartHttpServletRequest.getFiles("files");
-		
-		boardDTO.setPicture(file.getBytes());
-		
+		List<MultipartFile> files = null;
+
+		if (multipartHttpServletRequest.getFiles("files").isEmpty() != true  
+				&& file.isEmpty() != true)
+		{
+			files = multipartHttpServletRequest.getFiles("files");
+			boardDTO.setPicture(file.getBytes());
+		}
+	
 		LoginDTO dto = (LoginDTO) session.getAttribute("login");
 		boardDTO.setCpn(dto.getEmail());
 				 
@@ -167,11 +181,16 @@ public class FurnitureController
 		
 		int id = service.getTitleID(boardDTO); 
 		boardDTO.setId(id);	
-		  // 리스트 이미지 저장
-		UploadFileUtil.saveImg(boardDTO, Path);
-		  // 뷰 이미지 저장
-		UploadFileUtil.saveViewImg(files, ""+id, Path);
 		
+		if (multipartHttpServletRequest.getFiles("files").isEmpty() != true  
+				&& file.isEmpty() != true)
+		{
+			System.out.println("이미지 저장 실행");
+			// 리스트 이미지 저장
+			UploadFileUtil.saveImg(boardDTO, Path);
+			// 뷰 이미지 저장
+			UploadFileUtil.saveViewImg(files, ""+id, Path);
+		}
 		// 딱 한번만 적용되고 다음에는 없어지는 속성 저장
 		rttr.addFlashAttribute("msg", "updateOK");
 		// prefix + return String + suffix
