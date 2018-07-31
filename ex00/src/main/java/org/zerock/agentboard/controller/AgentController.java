@@ -144,8 +144,7 @@ public class AgentController {
 				if (list.get(i).getNo() == fileList.get(j).getNo())
 					list.get(i).setFileName(fileList.get(j).getFileName()); 
 			}
-		}
-	    
+		}	    
 		
 		//model.addAttribute("list", service.list(cri));
 		model.addAttribute("list", list);
@@ -180,7 +179,8 @@ public class AgentController {
 	// 리스트로 갈때에 글등록이 완료 되었다는 경고창은 띄우자(단, 한번만)
 	// -> RedirectAttributes.flash속성을 이용한다.
 	@RequestMapping(value = "/agentboard/write.do", method = RequestMethod.POST)
-	public String write(AgentDTO boardDTO, RedirectAttributes rttr, HttpSession session) throws IOException, Exception {
+	public String write(AgentDTO boardDTO, RedirectAttributes rttr, HttpSession session) 
+			throws IOException, Exception {
 		System.out.println(getClass().getSimpleName()+".write():POST");
 		// 파일 업로드 처리를 한다.
 		String originalName = boardDTO.getFile1().getOriginalFilename();
@@ -195,13 +195,13 @@ public class AgentController {
 		String savedFile = "";
 		// 첨부 파일이 없으면 저장하지 않고 있으면 저장한다.
 		if(!originalName.equals("")) {
-			// 날짜폴더가 포함된 파일명
+			// 날짜폴더가 포함된 파일명                                      
 			savedFile 
 			= UploadFileUtils.uploadFile(uploadPath, originalName,
 					boardDTO.getFile1().getBytes());
 			boardDTO.setFileName(savedFile);
 			}				
-		// 데이터를 db에 저장
+		// 데이터를 db에 저장`
 		service.insert(boardDTO);
 		
 		// 딱 한번만 적용되고 다음에는 없어지는 속성 저장

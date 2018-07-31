@@ -35,7 +35,7 @@ public class Criteria {
 	//페이저 정보 계산
 	public void calcData() {
 		startRow=(page-1)* perPageNum +1;
-		endRow=(page-1)*perPageNum+10;
+		endRow=startRow+perPageNum -1;
 		
 		//totalPage
 		totalPage=(totalCount-1)/perPageNum+1;
