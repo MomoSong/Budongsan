@@ -19,6 +19,9 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 th {
 	background-color: #FAEBD7;
 }
+td {
+	background-color: white;
+}
 </style>
 
 <script type="text/javascript"
@@ -140,8 +143,8 @@ th {
 </form>
 <div class="container">
   <div class="panel panel-default">
-    <div class="panel-heading">게시판 글보기</div>
-    <div class="panel-body">
+    <div class="panel-heading"><strong>중개 정보</strong></div>
+    <div class="panel-body" style= "background: linear-gradient(to bottom, #ffffcc 0%, #ff99cc 100%);">
         <table class="table">
   <!--     <table class="detail-list"> -->
        <colgroup>
@@ -182,7 +185,7 @@ th {
 	      </tr>
 	      <tr>
 	      	<th>주소</th>
-	        <td>${dto.addr1}</td>
+	        <td colspan="3">${dto.addr1}</td>
 	      </tr>
 	      <tr>
 	      	<th>작성자</th>
@@ -202,7 +205,7 @@ th {
 	    </tbody>
 	    <tfoot>
 	    	<tr>
-	    		<td colspan="2">
+	    		<td colspan="4">
 	    			<button id="updateBtn">수정</button>
 	    			<button id="deleteBtn">삭제</button>
 	    			<button id="listBtn">리스트</button>

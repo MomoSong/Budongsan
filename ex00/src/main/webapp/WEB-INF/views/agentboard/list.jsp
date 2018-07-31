@@ -18,9 +18,8 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <style type="text/css">
-.pagination{
-	color: black; background-color: black;
-}
+
+
 .data:hover {
 	background: #eee; cursor: pointer;
 }
@@ -135,7 +134,7 @@ th {
 		</form>
     </div>
     
-    <div class="panel-body">
+    <div class="panel-body" style= "background: linear-gradient(to bottom, #ffffcc 0%, #ff99cc 100%);">
      <p class = "allPost" align="right" style="background-color:black; color: white; font-size: large;"> 
      	전체 글: &nbsp; <strong> <c:out value ="${cri.totalCount} " /> </strong> 개 </p>
       <table class="table">
