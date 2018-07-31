@@ -21,9 +21,6 @@ uri="http://java.sun.com/jsp/jstl/fmt" %>
 .pagination{
 	color: black; background-color: black;
 }
-.col-md-4 {
-	border: 1px solid gray;
-}
 .data:hover {
 	background: #eee; cursor: pointer;
 }
@@ -147,7 +144,7 @@ th {
 	    
 	    <c:forEach items="${list }" var="dto">
 	      <div class="col-md-4">
-	        <div class="data">
+	        <div class="data thumbnail">
 	          <div>${dto.no } </div><br>
 	          <div>
 	          <c:if test="${!empty dto.fileName }" >
