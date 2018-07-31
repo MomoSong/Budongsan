@@ -263,7 +263,7 @@ $(document).ready(function () {
 	    <div class="form-group">
 	      <label for="name">이름:</label><br/>
 	      <input type="text" class="form-control col-sm-4" id="name" placeholder="이름 입력"
-	       name="name">
+	       name="name"><br/><br/>
 	    </div><br/>
 	    <div class="form-group" id="user_type" style="visibility: hidden;">
 	      <label for="seller_name">사업자명:</label><br/>
