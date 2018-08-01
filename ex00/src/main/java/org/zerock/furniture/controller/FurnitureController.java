@@ -121,7 +121,6 @@ public class FurnitureController
 		
 		boardDTO.setUUID( UUID.randomUUID().toString());
 		boardDTO.setPicture(file.getBytes());
-		
 		LoginDTO dto = (LoginDTO) session.getAttribute("login");
 		boardDTO.setCpn(dto.getEmail());
 		
