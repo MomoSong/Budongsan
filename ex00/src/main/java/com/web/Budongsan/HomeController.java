@@ -28,13 +28,16 @@ public class HomeController {
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
-	 * @throws IOException 
+	 * @throws Exception 
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) throws IOException {
+	public String home(Locale locale, Model model) throws Exception {
 		logger.info("부동산닷컴 메인페이지 구동.");
 		model.addAttribute("carousel", service.mainCarousel());
 		System.out.println(service.mainCarousel());
+		
+			
+		
 		return "index";
 	}
 	
