@@ -34,14 +34,14 @@
 ** 회원가입 완료시에 이메일 아이디로 인증코드가 발송됩니다.(javax mail로 구현)
 ** 회원 가입 완료된 비밀번호는 Spring security를 통해 암호화되어 저장됩니다. 
 
-
+<br><br><br>
 <코드 리뷰 - MemberController 에서 발췌>
 
 <img src='http://drive.google.com/uc?export=view&id=1UkvIptIR9VUsZRxRiDwBdVQRllcDTXuT' /><br><br><br>
 
 <img src='http://drive.google.com/uc?export=view&id=1hWtyw2I4RoUG6E5NnxzYpYTjPXXOGk7T' /><br><br><br>
 
-<img src='http://drive.google.com/uc?export=view&id=1Jbth8uWZEpNDbXEFFssjnzT-88AIzNSg' /><br><br><br>
+<img src='http://drive.google.com/uc?export=view&id=1oli74355WitYdqiyd_5wf16AFun11JTT' /><br><br><br>
 
 <img src='http://drive.google.com/uc?export=view&id=1eGSUNXGC3wy6g9hkJOd1dZoJ7Fq5F92B' /><br><br><br>
 
